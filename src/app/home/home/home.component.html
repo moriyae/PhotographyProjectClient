@@ -1,0 +1,37 @@
+<body>
+  <div id="options" class="header" (scroll)="onWindowScroll();"> 
+    <a id="op1" class="option" [innerText]="'בית'" routerLink="/" (click)="changePath('home')"></a>
+    <a id="op2" class="option" [innerText]="'גלריות'" href="#galery"></a>
+    <a id="op3" class="option" [innerText]="'צור קשר'" href="#contact"></a>
+    <a id="op4" class="option" *ngIf="!logIn" [innerText]="'התחבר'" (click)="openLogInDialog()"></a>
+    <a id="op5" class="option" *ngIf="logIn" [innerText]="'התנתק'" (click)="clr('contact')"></a>
+  </div>
+  
+  <div id="animation" class="wraper-img">
+    <div id="tm1" class="img img1"> </div>
+    <div id="tm2" class="img img2"> </div>
+    <div id="tm3" class="img img3"> </div>
+    <div id="tm4" class="img img4"> </div>
+    <div id="tm5" class="img img5"> </div>
+    <div id="tm6" class="img img6"> </div>
+    <div id="tm7" class="img img7"> </div>
+  </div>
+ 
+ <div class="slogen">
+    <h1>לתפוס את הרגע</h1>
+    <h5>אתה לא מצלם תמונה, אתה יוצר אותה.</h5>
+ </div>
+
+ <div id="galery">
+  <app-galery></app-galery>
+ </div>
+ 
+<div id="contact">
+  <app-contact-us></app-contact-us>
+</div>
+
+<app-autocomp></app-autocomp>
+
+
+
+</body>

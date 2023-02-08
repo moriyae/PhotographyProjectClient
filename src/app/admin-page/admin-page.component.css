@@ -1,0 +1,121 @@
+form{
+  text-align: center;
+  direction: rtl;
+  background-color: rgb(255, 255, 255);
+}
+
+.router-div{
+  height: fit-content;
+  padding-top: 10px;
+  grid-column: 2;
+  display: flex;
+}
+
+.buttons-div{
+  margin-right: 0px;
+  margin-top: 0px;
+  background-color: rgb(230, 230, 230);
+  height: 100vh;
+  width: 150px;
+  grid-column: 1;
+}
+
+
+header{
+  background-color: rgb(40, 1, 59);
+  padding-top: 23px;
+  display: flex;
+  height: max-content;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  justify-content: space-between;
+}
+
+.divCameraIcon{
+  float: right;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.cameraLabel{
+  font-size: xx-small;
+  color: white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.cameraIcon
+{
+  
+  color: white;
+  margin-right: 20px !important;
+  font-size: xx-large !important;
+  overflow: inherit !important;
+  margin-bottom: 10px !important;
+}
+
+.pageDiv{
+  display: grid;
+  grid-template-columns: 2;
+}
+
+h1{
+  color: rgb(255, 255, 255) ;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+  float: right;
+  font-size: x-large;
+  vertical-align: text-bottom;
+  grid-column: 0;
+  margin-right: 20px;
+}
+
+.exitButton{
+  float: left;
+  color: rgb(37, 37, 37) ;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  border-radius: 20px;
+  grid-column: 1;
+  background-color: rgb(252, 252, 252);
+  margin-left: 20px;
+}
+
+.menuButton{
+  margin: 0px !important;
+  border-radius: 0px !important;
+  background-color: rgb(230, 230, 230);
+  color:rgb(24, 24, 24);  
+  font-size: large;
+  direction: rtl;
+  cursor: pointer;
+  border-width: 0px;
+  width: 100%;
+  height: 60px;
+  text-align: right;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.menuButton:hover{
+  font-weight: bold;
+}
+
+.tabIn{
+  margin: 0px !important;
+  border-radius: 0px !important;
+  color:rgb(61, 0, 92);
+  font-size: large;
+  direction: rtl;
+  cursor: pointer;
+  border-width: 0px;
+  width: 100%;
+  font-weight: bold;
+  height: 60px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border-right: 6px solid rgb(58, 0, 87) ;
+  background-color: rgb(255, 255, 255);
+}

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="works-bag" id="contact">תיק עבודות</div>
+    <div class="galeryButtonsDiv">
+        <div *ngFor="let category of categories">
+            <div (click)="setActive(category.id)" [ngClass]="category.isActive ? 'active' : 'btn-img'">
+                {{category.name}}
+            </div>
+        </div>
+    </div>
+<div class="grid" [photoGalleryGroup]="{ arrowEl: true, indexIndicatorSep: ' - ' , allowPanToNext:false,
+    arrowKeys:true,
+    barsSize: {top:30,bottom:'auto'},
+    bgOpacity: 1,
+    captionEl: true,
+    closeEl: true,
+    closeElClasses: [],
+    clickToCloseNonZoomable: false,
+    closeOnScroll: false,
+    focus: true,
+    counterEl: true,
+    escKey: true,
+    fullscreenEl: true,
+    closeOnVerticalDrag: true,
+    loop: true,
+    showHideOpacity: true,
+    mouseUsed: true,
+    tapToToggleControls: true}">
+  <div class="grid-item" 
+       *ngFor="let image of currentCategory" 
+       [photoGallery]="image">
+       <img [src]="image"/>
+       {{image}}
+  </div>
+</div>
+</div>
+  

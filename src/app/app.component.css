@@ -1,0 +1,9 @@
+ .rout {
+     display: block;
+     /* flex: 1 1 auto; */
+ }
+
+ .hide {
+     display: none;
+
+ }

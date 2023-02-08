@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="search">
+      <mat-icon>search</mat-icon> 
+      <input class="search-client" 
+            type="text" 
+            name="search" 
+            [(ngModel)]="searchText" 
+            autocomplete="off" 
+            placeholder="חיפוש"/>
+
+            <button mat-icon-button 
+            (click)="refresh()" style="margin-left: 31vw">
+      <mat-icon>refresh</mat-icon>
+     </button>
+      <button class="addButton"
+              (click)="matDialog.open(dialog);newEvent()">
+        אירוע חדש
+      </button>
+    </div> 
+    <br>
+    <table class="table table-striped" id="middle" >
+      <thead>
+      <tr>
+        <th></th>
+        <th>שם אירוע</th>
+        <th>קטגוריה</th>
+        <th>תאריך</th>
+        <th>פרטים</th>
+        <th>לקוח</th>
+        <th>צפה</th>
+        <th>מחק</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let event of allEvents | filter:searchText let i=index" 
+          id="pointer">
+          <td [innerText]=i+1></td>
+          <td [innerText]="event.NameEvent"></td>
+          <td [innerText]="event.Category"></td>
+          <td>{{event.Date | date: 'dd/MM/yyyy'}}</td>
+          <td [innerText]="(event.details?.substr(0,20)+'...').replace('null', '')"></td>
+          <td [innerText]="event.FirstName+' '+event.LastName" (click)="matDialog.open(dialog);onSelectClient(event.clientId)"></td>
+          <td><mat-icon (click)="onSelectEvent(event)">arrow_left_alt</mat-icon></td>
+          <td><mat-icon (click)="onSelectEventToDelete(event.eventId);matDialog.open(deleteDialog);">delete</mat-icon></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #deleteDialog>
+   <button (click)="closeDialog()">X</button>
+  <div id="popup1"> 
+  <h3 style="direction: rtl;" [innerText]="'האירוע וכל התמונות הקשורות אליו ימחקו. להמשיך?'"></h3>
+  <div> 
+    <button class="a" (click)="deleteEvent()">כן</button>
+    <button class="b" (click)="closeDeleteDialog()">לא</button>
+  </div>
+</div>
+
+</ng-template>
+
+
+<ng-template #dialog>
+  <button (click)="closeDialog()">X</button>
+  <router-outlet></router-outlet>
+</ng-template>

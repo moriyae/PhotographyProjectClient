@@ -1,0 +1,102 @@
+p{
+    color: white;
+  }
+
+  body{
+    padding-bottom: 0px;
+  }
+
+  .form-control{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  direction: rtl;
+  font-size: large;
+  border-color: darkblue;
+  border-radius: 10px;
+  border-width: 1px;
+  padding: 5px;
+  min-width: 180px;
+  margin: 8px;
+  text-align: right;
+  } */
+  
+  .ng-invalid{
+  border-color: red;
+  }
+
+  a{
+    cursor: pointer;
+    color: darkblue;
+    margin: 10px;
+  }
+  a:hover{
+    color: red;
+  }
+
+  h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(42, 0, 63) ;
+    font-size: 50px;
+    margin-bottom: 40px;
+  }
+  
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 12vh;
+    padding-top: 4vh;
+  }
+  
+  .errorText{
+    color: rgb(185, 0, 0);
+    background-color: transparent;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    font-size: normal;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .form-control{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    direction: rtl;
+    font-size: normal;
+    border: 0.5px solid rgb(61, 0, 92);
+    border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .form-control:focus{
+    outline: none;
+    border: 2px solid rgb(45, 0, 68);
+  }
+  
+  .submit-button{
+    margin: 10px;
+    background-color: rgb(42, 0, 63) ;
+    color: white;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: large;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    border:none;
+    min-width: 10vw;
+    margin-left: 3vw;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .submit-button:disabled{
+    cursor: not-allowed;
+  }
+  
+  .submit-button:hover{
+    border: 1px solid rgb(42, 0, 63);
+    color: rgb(42, 0, 63) ;
+    background-color: white;
+  }

@@ -1,0 +1,83 @@
+<form  [formGroup]="formGroup"
+       (ngSubmit)="contactUs()">
+       <h1>צור קשר</h1>
+
+       <div>
+        <input type="text"
+                for="name" 
+                class="form-control"
+                formControlName="name"
+                placeholder="*שם">
+          <div *ngIf="formGroup.controls['name'].invalid && (formGroup.controls['name'].dirty || formGroup.controls['name'].touched)">
+            <div class="errorText"
+                 *ngIf="formGroup.controls['name'].errors!['required']">
+                שדה חובה
+            </div>
+            <div class="errorText"
+                *ngIf="formGroup.controls['name'].errors!['pattern']">
+              שם יכול להכיל אותיות בלבד 
+            </div>
+          </div>
+      </div>
+
+      <div>
+        <input type="text"
+                for="phone" 
+                class="form-control"
+                formControlName="phone"
+                placeholder="*טלפון">
+          <div *ngIf="formGroup.controls['phone'].invalid && (formGroup.controls['phone'].dirty || formGroup.controls['phone'].touched)">
+            <div class="errorText"
+                *ngIf="formGroup.controls['phone'].errors!['required']">
+                שדה חובה
+            </div>
+            <div class="errorText"
+                *ngIf="formGroup.controls['phone'].errors!['pattern']">
+                מספר לא תקין
+              </div>
+          </div>
+      </div>
+
+      <div>
+        <input type="text"
+                for="mail" 
+                class="form-control"
+                formControlName="mail"
+                placeholder="*כתובת מייל">
+          <div *ngIf="formGroup.controls['mail'].invalid && (formGroup.controls['mail'].dirty || formGroup.controls['mail'].touched)">
+            <div class="errorText"
+                *ngIf="formGroup.controls['mail'].errors!['required']">
+                שדה חובה
+            </div>
+            <div class="errorText"
+                *ngIf="formGroup.controls['mail'].errors!['email']">
+                  כתובת מייל לא תקינה
+              </div>
+          </div>
+      </div>
+
+      <div>
+        <textarea type="text"
+                  for="message" 
+                  class="form-control"
+                  formControlName="message"
+                  maxlength="140" 
+                  rows="7"
+                  placeholder="*הודעה">
+        </textarea>
+          <div *ngIf="formGroup.controls['message'].invalid && (formGroup.controls['message'].dirty || formGroup.controls['message'].touched)">
+            <div class="errorText"
+                *ngIf="formGroup.controls['message'].errors!['required']">
+                הכנס תוכן לפניה
+            </div>
+          </div>
+      </div>
+
+      <button class="submit-button" 
+              type="submit"
+              [disabled]="formGroup.invalid">
+          צור קשר
+      </button>
+
+    </form>
+    <hr>

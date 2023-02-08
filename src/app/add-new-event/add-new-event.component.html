@@ -1,0 +1,87 @@
+<label *ngIf="!show">האירוע נוסף בהצלחה!</label>
+
+<form #form [formGroup]="formGroup"
+       (ngSubmit)="addEvent()"
+       *ngIf="show">
+       <h1>הוסף אירוע חדש</h1>
+
+      <div>
+        <label>שם האירוע</label>
+        <input type="text"
+                for="NameEvent" 
+                class="form-control"
+                formControlName="NameEvent"
+                placeholder="שם האירוע">
+                <div *ngIf="formGroup.controls['NameEvent'].invalid && (formGroup.controls['NameEvent'].dirty || formGroup.controls['NameEvent'].touched)">
+                  <div class="errorText"
+                       *ngIf="formGroup.controls['NameEvent'].errors!['required']">
+                      שדה חובה
+                  </div>
+              </div>
+      </div>
+
+      <div>
+        <label>תאריך</label>
+        <input type="date"
+                for="Date" 
+                class="form-control"
+                formControlName="Date"
+                placeholder="תאריך">
+                <div *ngIf="formGroup.controls['Date'].invalid && (formGroup.controls['Date'].dirty || formGroup.controls['Date'].touched)">
+                  <div class="errorText"
+                       *ngIf="formGroup.controls['Date'].errors!['required']">
+                      שדה חובה
+                  </div>
+              </div>
+      </div>
+
+      <div>
+        <label>לקוח</label>
+        <input type="text" 
+               class="form-control" 
+               required="true"
+               placeholder="הקלד כדי לחפש"
+               [matAutocomplete]="autoClients" 
+               [formControl]="clientsControl">
+        <mat-autocomplete #autoClients="matAutocomplete">
+          <mat-option *ngFor="let client of filteredClients | async" 
+                      [value]="client.FirstName+' '+client.LastName"
+                      (onSelectionChange)="selectClient(client.Id)">
+            {{client.FirstName+' '+client.LastName}}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+
+      <div>
+        <label>קטגוריה</label>
+        <input type="text"
+               placeholder="בחר" 
+               required="true"
+               class="form-control" 
+               [matAutocomplete]="autoCategories">
+        <mat-autocomplete #autoCategories="matAutocomplete">
+          <mat-option *ngFor="let option of categories" 
+                      [value]="option"
+                      (onSelectionChange)="selectCategory(option)">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+
+        <div>
+          <label>פרטים</label>
+          <textarea type="text"
+                    for="details" 
+                    class="form-control"
+                    formControlName="details"
+                    placeholder="פרטים">
+          </textarea>
+        </div>
+
+      <button class="submit-button" 
+              type="submit"
+              [disabled]="formGroup.invalid">
+          אישור
+      </button>
+
+    </form>

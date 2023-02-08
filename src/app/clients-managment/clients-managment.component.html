@@ -1,0 +1,62 @@
+<div class="container text-center">
+
+</div>
+<div class="container">
+
+  <div class="row">
+    <div class="search">
+      <mat-icon>search</mat-icon> 
+      <input class="search-client" 
+             type="text" 
+             name="search" 
+             [(ngModel)]="searchText" 
+             autocomplete="off" 
+             placeholder="חיפוש"/>
+
+             <button mat-icon-button 
+                    (click)="refresh()" style="margin-left: 29vw">
+              <mat-icon>refresh</mat-icon>
+             </button>
+             <button class="addButton"
+                     (click)="matDialog.open(editClient);newClient()">
+              הוספת לקוח
+             </button>
+    </div> 
+    <br>
+    <table class="table table-striped" id="middle" >
+      <thead>
+      <tr>
+        <th></th>
+        <th>שם פרטי</th>
+        <th>שם משפחה</th>
+        <th>שם משתמש</th>
+        <th>סיסמא</th>
+        <th>טלפון</th>
+        <th>מייל</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let client of clients | filter:searchText let i=index" id="pointer" 
+           (click)="viewClient(client)">
+          <td [innerText]=i+1></td>
+          <td [innerText]="client.FirstName"></td>
+          <td [innerText]="client.LastName"></td>
+          <td [innerText]="client.UserName"></td>
+          <td [innerText]="client.UserPassword"></td>
+          <td [innerText]="client.Phone"></td>
+          <td [innerText]="client.Mail"></td>
+          <td>
+            <mat-icon (click)="matDialog.open(editClient);onSelectClient(client.Id)">edit</mat-icon>
+         
+          </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #editClient>
+  <button (click)="closeDialog()">X</button>
+  <router-outlet></router-outlet>
+</ng-template>

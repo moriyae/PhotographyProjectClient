@@ -1,0 +1,131 @@
+<body>
+      <h4 *ngIf="message" [innerText]="message"></h4>
+      <form *ngIf="show" 
+             [formGroup]="formGroup" 
+             (ngSubmit)="addClient()">
+             
+        <div>
+            <label>שם פרטי</label>
+            <input  formControlName="firstName" 
+                    placeholder="שם פרטי"
+                    class="form-control"/>
+                    <div *ngIf="formGroup.controls['firstName'].invalid && (formGroup.controls['firstName'].dirty || formGroup.controls['firstName'].touched)">
+                        <div class="errorText"
+                             *ngIf="formGroup.controls['firstName'].errors!['required']">
+                            שדה חובה
+                        </div>
+                        <div class="errorText"
+                            *ngIf="formGroup.controls['firstName'].errors!['pattern']">
+                            שם יכול להכיל אותיות בלבד
+                        </div>
+                    </div>
+        </div>
+
+        <div>
+            <label>שם משפחה</label>
+            <input  formControlName="lastName" 
+                    placeholder="שם משפחה"
+                    class="form-control"/>
+                    <div *ngIf="formGroup.controls['lastName'].invalid && (formGroup.controls['lastName'].dirty || formGroup.controls['lastName'].touched)">
+                        <div class="errorText"
+                             *ngIf="formGroup.controls['lastName'].errors!['required']">
+                            שדה חובה
+                        </div>
+                        <div class="errorText"
+                            *ngIf="formGroup.controls['lastName'].errors!['pattern']">
+                            שם יכול להכיל אותיות בלבד
+                        </div>
+                    </div>
+        </div>
+        
+        
+        <div>
+            <label>טלפון</label>
+            <input  formControlName="phone" 
+                    placeholder="טלפון"
+                    class="form-control"/>
+                    <div *ngIf="formGroup.controls['phone'].invalid && (formGroup.controls['phone'].dirty || formGroup.controls['phone'].touched)">
+                        <div class="errorText"
+                             *ngIf="formGroup.controls['phone'].errors!['required']">
+                            שדה חובה
+                        </div>
+                        <div class="errorText"
+                            *ngIf="formGroup.controls['phone'].errors!['pattern']">
+                            מספר לא תקין
+                        </div>
+                    </div>
+        </div>
+
+        <div>
+            <label>כתובת מייל</label>
+            <input  formControlName="mail" 
+                    placeholder="כתובת מייל"
+                    class="form-control"/>
+                    <div *ngIf="formGroup.controls['mail'].invalid && (formGroup.controls['mail'].dirty || formGroup.controls['mail'].touched)">
+                        <div class="errorText"
+                             *ngIf="formGroup.controls['mail'].errors!['required']">
+                            שדה חובה
+                        </div>
+                        <div class="errorText"
+                            *ngIf="formGroup.controls['mail'].errors!['email']">
+                            כתובת מייל לא חוקית
+                        </div>
+                    </div>
+        </div>
+
+        <div>
+            <label>שם משתמש</label>
+            <input  formControlName="username" 
+                    placeholder="שם משתמש"
+                    class="form-control"/>
+                    <div *ngIf="formGroup.controls['username'].invalid && (formGroup.controls['username'].dirty || formGroup.controls['username'].touched)">
+                        <div class="errorText"
+                             *ngIf="formGroup.controls['username'].errors!['required']">
+                            שדה חובה
+                        </div>
+                        <div class="errorText"
+                             *ngIf="formGroup.controls['username'].touched && formGroup.controls['username'].errors!['userNameNotAvailable']">
+                            שם משתמש תפוס. נסה שם אחר
+                        </div>
+                    </div>
+        </div>
+
+            <div class="form-group">
+                <label>סיסמא</label>
+                <input type="password" class="form-control" formControlName="password">
+            </div>
+
+            <div class="form-group"
+                 *ngIf="status == 'add'? true : false">
+                <label>אימות סיסמא</label>
+                    <input type="password" 
+                           class="form-control" 
+                           formControlName="confirmPassword">
+                    <div *ngIf="formGroup.controls['confirmPassword'].invalid && (formGroup.controls['confirmPassword'].dirty || formGroup.controls['confirmPassword'].touched)">
+                        <div class="errorText"
+                            *ngIf="formGroup.controls['confirmPassword'].errors!['required']">
+                            שדה חובה
+                        </div>
+                        <div class="errorText"
+                            *ngIf="formGroup.controls['confirmPassword'].touched && formGroup.controls['confirmPassword'].errors!['MatchPassword']">
+                            סיסמאות לא זהות
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="isAd">
+                    <label>הרשאת גישה</label>
+                    <mat-radio-group formControlName="isAdmin">
+                        <mat-radio-button checked value="0">לקוח</mat-radio-button>
+                        <mat-radio-button checked value="1">מנהל</mat-radio-button>
+                    </mat-radio-group>                      
+                </div>
+
+            <div class="form-group">
+                <button type="submit"
+                        class="submit-button"
+                        [innerText]="valueBtn">
+                </button>
+            </div>
+        </form>
+</body>

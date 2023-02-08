@@ -1,0 +1,67 @@
+<div class="loadDiv"
+     *ngIf="!show && !eventShow">
+    <img src="../../assets/camera.gif"/>
+</div>
+  
+<div class="calendarDiv" *ngIf="show && !eventShow">
+  <div class="calendarButtonsDiv">
+       <button mat-icon-button 
+               (click)="matDialog.open(addEvent)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <div class="arrows">
+      <h1 class="month">{{ viewDate | calendarDate:(view + 'ViewTitle'):'he' }}</h1>
+      <button class="previousButton"
+              mwlCalendarPreviousView
+              [view]="view"
+              [(viewDate)]="viewDate">
+           <mat-icon>arrow_forward</mat-icon>
+      </button>
+      <button class="TodayButton"
+              mwlCalendarToday
+              [(viewDate)]="viewDate">
+              היום
+      </button>
+      <div class="nextButton"
+           mwlCalendarNextView
+           [view]="view"
+           [(viewDate)]="viewDate">
+        <mat-icon>arrow_back</mat-icon>
+    </div>
+  </div>
+  </div>
+    <br>
+         <mwl-calendar-month-view [cellTemplate]="event" [locale]="locale" [viewDate]="viewDate" [events]="events">
+             {{ viewDate | calendarDate:(view + 'ViewTitle'):'He' }}
+        </mwl-calendar-month-view>
+</div>
+
+  <ng-template #event let-day="day" let-locale="locale">
+      <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}
+        <div class="cal-cell-top">
+            <ng-container *ngFor="let event of day.events">
+              <button class="summary"  [matMenuTriggerFor]="menu" [innerText]="event.title">
+                <mat-menu #menu="matMenu">
+                  <div>
+                  <div class="details">
+                    <strong>שם אירוע:</strong> {{ event.title }}
+                    <br>
+                    <strong>קטגוריה:</strong> {{ event.category }}
+                    <br>
+                    <strong>פרטים:</strong> {{ event.details }}
+                  </div>
+                  <button (click)="openEvent(event)" mat-icon-button> 
+                    <mat-icon>arrow_left_alt</mat-icon>
+                  </button>
+                 </div>
+                </mat-menu>
+              </button>
+            </ng-container>
+          </div>
+    </span>
+  </ng-template>
+
+  <ng-template #addEvent>
+  <app-add-new-event></app-add-new-event>
+</ng-template>
+  

@@ -1,0 +1,182 @@
+.summary
+{
+  font-size: 13px !important;
+  text-align: center !important;
+  /* background-color: rgb(243, 243, 243) !important; */
+  /* background-color: rgb(247, 247, 247) !important; */
+  border-radius: 12px !important;
+  float: none !important;
+ /* border:none !important; */
+ /* background-color: rgb(0, 36, 32) !important; */
+ border-width: 2px !important;
+  box-shadow: 0 4px 8px 0 rgb(231, 231, 231), 0 6px 15px 0 rgb(211, 211, 211) !important;
+  /* margin-left: 17% !important; */
+  margin-top: 8px !important;
+  /* color: rgb(0, 36, 32) !important; */
+  font-style: bold !important;
+  background-color: white !important;
+  opacity: 100% !important;
+  display: flex !important;
+flex-direction: column !important;
+justify-content: center !important;
+align-items: center !important;
+cursor: pointer !important;
+border-color:  rgb(31, 0, 46);;
+}
+
+  
+.cal-day-number{
+  font-size: x-large !important;
+  color:  rgb(31, 0, 46) !important;
+  font-weight: 500 !important;
+  text-align: right !important;
+  direction: rtl;
+}
+
+.cal-cell-top{
+  /* height: 60px!important; */
+  font-size: medium !important;
+  color:  rgb(31, 0, 46) !important;
+}
+
+.calendarButtonsDiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  direction: rtl;
+  float: left;
+
+}
+
+.nextButton{
+  background-color: white;
+  font-size: large;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 12px 0px 0px 12px;
+  border-width: 0px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.previousButton{
+  background-color: white;
+  font-size: large;
+  cursor: pointer;
+  padding: 10px;
+  border-width: 0px;
+  border-radius: 0px 12px 12px 0px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.TodayButton{
+  background-color: rgb(42, 0, 63);
+  color: white;
+  font-size: large;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 12px;
+  padding: 5px 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.TodayButton:hover{
+  /* background-color: white; */
+  background-color: rgb(230, 230, 230);
+  border: 2px solid rgb(58, 0, 87);
+  color: rgb(31, 0, 46);
+  font-weight: bold;
+}
+
+.nextButton:hover{
+  font-weight: bold;
+}
+
+.previousButton:hover{
+  font-weight: bold;
+}
+/* 
+.addEvent{
+     background-color: rgb(42, 0, 63); 
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    /* padding: 1vh 4vh; */
+    /* border-radius: 12px; 
+    margin-left: 53vw;
+    /* padding-bottom: 2vh; */
+    /* border-radius: 12px; */
+
+    /* float: right; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  } 
+
+.addEvent:hover{
+    /* background-color: white; 
+    background-color: rgb(230, 230, 230);
+    border: 2px solid rgb(58, 0, 87);
+    color: rgb(31, 0, 46);
+    font-weight: bold;
+  } */
+
+.loadDiv{
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding-top: 25vh;
+}
+
+.calendarDiv{
+  width: 85vw;
+  display: flex;
+  text-align: center;
+  height: -moz-fit-content;
+  height: fit-content;
+  /* margin-right: 15px; */
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: space-between;
+  align-items: stretch;
+  }
+
+  .arrows{
+    display: flex;
+    align-items: center;
+  }
+
+  .month{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:  rgb(42, 0, 63);
+    /* margin-left: 3vw; */
+    font-size: x-large;
+    font-weight: 500;
+    padding-top: 2vh;
+  }
+
+  .arrowBack{
+    float: right !important;
+    display: flex;
+    font-size: large;
+    font-weight: bold;
+    color: rgb(42, 0, 63) !important;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .arrowBack:hover{
+    font-weight: bold;
+  }
+
+  .details{
+    direction: rtl !important;
+    text-align: right !important;
+    padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }

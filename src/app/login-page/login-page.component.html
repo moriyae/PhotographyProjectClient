@@ -1,0 +1,56 @@
+<form [formGroup]="formGroup"
+      (submit)="enter()"
+      autocomplete="off">
+
+    <h1 [innerText]="'התחברות למערכת'"></h1>
+    <div class="formControlsDiv">
+        <input  type="text" 
+                id="username"
+                for="username"
+                formControlName="username" 
+                placeholder="שם משתמש"
+                class="form-control">
+                <button class="iconButton" disabled="true">
+                    <mat-icon matSuffix>person</mat-icon>
+                </button>
+    </div>
+
+    <div *ngIf="formGroup.controls['username'].invalid && (formGroup.controls['username'].dirty || formGroup.controls['username'].touched)">
+        <div class="errorText"
+             *ngIf="formGroup.controls['username'].errors!['required']">
+          שדה חובה
+        </div>
+    </div>
+
+    <div class="formControlsDiv">
+        <input [type]="hide?'password':'text'"
+                for="password" 
+                class="form-control"
+                formControlName="password" 
+                placeholder="סיסמה">
+
+            <button class="iconButton">
+                <mat-icon aria-disabled="true" matSuffix (click)="hide=!hide">{{hide? 'visibility':'visibility_off'}}</mat-icon>
+            </button> 
+            
+    </div>
+            <div *ngIf="formGroup.controls['password'].invalid && (formGroup.controls['password'].dirty || formGroup.controls['password'].touched)">
+                    <div class="errorText"
+                         *ngIf="formGroup.controls['password'].errors!['required']">
+                        שדה חובה
+                    </div>
+                    <div class="errorText"
+                         *ngIf="formGroup.controls['password'].errors!['pattern']">
+                        סיסמה לא חוקית
+                    </div>
+            </div>
+    
+    <button class="btnOK" 
+            type="submit" 
+            [disabled]="formGroup.invalid">
+            התחבר
+    </button>
+
+<a id="pas" [innerText]="'שכחתי סיסמא'" (click)="changePass()"></a>
+
+</form>
