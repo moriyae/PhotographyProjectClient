@@ -1,0 +1,160 @@
+p{
+    color: white;
+}
+
+h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(42, 0, 63) ;
+  font-size: 50px;
+  margin-bottom: 40px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgb(238, 238, 238);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 7vh;
+}
+
+.errorText{
+  color: rgb(185, 0, 0);
+  background-color: transparent;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 2px;
+  font-size: normal;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form-control{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  direction: rtl;
+  font-size: large;
+  border: 0.5px solid rgb(61, 0, 92);
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 45vw;
+  background-color: white;
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-control:focus{
+  outline: none;
+  border: 2px solid rgb(45, 0, 68);
+}
+
+.submit-button{
+  margin: 10px;
+  background-color: rgb(42, 0, 63) ;
+  color: white;
+  border-radius: 5px;
+  font-weight: normal;
+  font-size: large;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  border:none;
+  min-width: 30vw;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.submit-button:disabled{
+  cursor: not-allowed;
+}
+
+.submit-button:hover{
+  border: 2px solid rgb(42, 0, 63);
+  color: rgb(42, 0, 63) ;
+  background-color: white;
+}
+
+img {
+  width: 100%;
+  border-radius: 5px;
+  --hl: 0;
+  object-fit: cover;
+  transform: scale(calc(1 + .2*var(--hl)));
+  transition: .7s;
+  padding-top: 0px;
+}
+
+img:hover { 
+  border-radius: 66px;
+  --hl: 0.7;
+}
+     
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  width:  80%;
+  margin-right: auto;
+  margin-left: auto;
+ }
+
+ .grid  img {
+  display: block; 
+  height: 400px;
+  object-fit: cover;
+  width: 400px;
+  cursor: pointer;
+}
+
+ 
+.grid-item {
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-item  img {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+:ng-deep .lightbox-wrapper[_ngcontent-tsh-c3] {
+  background: none !important;
+  width: 50px;
+  background-image: url(http://localhost:4200/assets/cake.jpg) !important;
+   
+   
+    }
+   
+   
+    ::ng-deep .pswp__button--arrow--left {
+        background-image: url(http://localhost:4200/assets/arrow-left-circle-fill.svg) !important;
+   
+    }
+   
+    ::ng-deep .pswp__button--arrow--left::before {
+        background-position: -200px -300px !important;
+   
+    }
+    ::ng-deep .pswp__button--arrow--right::before {
+      /* background-position: -200px -300px !important; */
+      right: -1px !important;
+ 
+  }
+
+   
+    ::ng-deep .pswp__button--arrow--right {
+        background-image: url(http://localhost:4200/assets/arrow-right-short.svg) !important;
+        margin-right: 8px !important;
+   
+    }
+
+  
+
+
+   
