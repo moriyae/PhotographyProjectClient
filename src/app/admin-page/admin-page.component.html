@@ -15,7 +15,7 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="exit()" >התנתק</button>
       </mat-menu>
-
+ 
       <button [ngClass]="tabs[0]? 'tabIn' : 'menuButton'"
               class="menuButton"
               (click)="diary()">
@@ -45,7 +45,6 @@
       </button>
 
     </div>
-  
     <div class="router-div">
       <router-outlet></router-outlet>
     </div>

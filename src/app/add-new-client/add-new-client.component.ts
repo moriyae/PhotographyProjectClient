@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminPageService } from 'src/services/admin-page.service';
 import { LoggedInGuardService } from 'src/services/logged-in-guard.service';
+import { ConfirmedValidator } from '../forgot-password/forgot-password.component';
 import { Client } from './add-new-client.model';
 
 @Component({
@@ -19,7 +20,7 @@ export class AddNewClientComponent implements OnInit {
   show: boolean = true;
   isAd=false;
   submitted: boolean = false;
-
+  hide=true;
   constructor(private adminPg: AdminPageService,
               private formBuilder: FormBuilder, 
               private route:ActivatedRoute,
@@ -33,15 +34,17 @@ export class AddNewClientComponent implements OnInit {
     console.log(this.logIn.getCurrentClient())
     this.user = this.logIn.getCurrentClient()
     this.formGroup = this.formBuilder.group({
-      firstName: [this.user? this.user.FirstName : '',[Validators.required, Validators.pattern("^[a-zA-Zא-ת]+$")]],
-      lastName: [this.user? this.user.LastName : '', [Validators.required, Validators.pattern("^[a-zA-Zא-ת]+$")]],
+      firstName: [this.user? this.user.FirstName : '',[Validators.required, Validators.pattern("^[a-zA-Zא-ת ]+$")]],
+      lastName: [this.user? this.user.LastName : '', [Validators.required, Validators.pattern("^[a-zA-Zא-ת ]+$")]],
       phone: [this.user? this.user.Phone : '', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       mail: [this.user? this.user.Mail : '', [Validators.required, Validators.email]],
       username: [this.user? this.user.UserName : '', [Validators.required]],
       password: [this.user? this.user.UserPassword : '', Validators.compose([Validators.required])],
-      confirmPassword: ['', [Validators.required]],
+      confirmPassword: [this.user? this.user.UserPassword : '', [Validators.required]],
       isAdmin:[this.user? (this.user.IsAdmin ? "1" : "0") :"0",Validators.required]
-    });
+    },{ 
+        validator: ConfirmedValidator('password', 'confirmPassword')
+      })
   }
 
   ngOnInit() {

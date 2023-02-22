@@ -20,8 +20,8 @@ export class ContactUsComponent implements OnInit {
   }
   submitted!:any
   details={
-    mail: 'esther78964@gmail.com',
-    sub: 'סיסמא חד פעמית',
+    mail: '4321vz@gmail.com',
+    sub: '',
     txt: ''
   }
 
@@ -44,6 +44,7 @@ export class ContactUsComponent implements OnInit {
       let config = new MatSnackBarConfig();
       config.panelClass = ['custom-class'];
       this.snackBar.open('ההודעה נשלחה בהצלחה, ניצור איתך קשר:)','X',config)
+      this.ngOnInit();
     })
   }
 

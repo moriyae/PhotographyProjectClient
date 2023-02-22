@@ -33,13 +33,13 @@ export class ForgotPasswordComponent {
     sub: 'סיסמא זמנית',
     txt: ''
   }
-  phone!: string;
+  email!: string;
   code!: string;
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   client!: Client;
   clicked = false;
   show: boolean = false;
-  phoneExists=false;
+  emailExists=false;
   vertifyPassword='';
   temporaryPassword='';
   blockNextStep='';
@@ -64,7 +64,7 @@ export class ForgotPasswordComponent {
 
   createForm() {
     this.step1FormGroup = this.formBuilder.group({
-       tel: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
+       email: ['', [Validators.required,Validators.email]]
     });
 
     this.step2FormGroup=this.formBuilder.group({
@@ -87,7 +87,7 @@ export class ForgotPasswordComponent {
         this.details.mail = this.client.Mail;
         this.details.txt = `שלום ${this.client.FirstName}, סיסמתך הזמנית היא: ${this.temporaryPassword}`
         this.loggedInGuardService.send(this.details).subscribe(r=> {console.log(r)})
-        this.phoneExists=true;
+        this.emailExists=true;
         this.clicked = true;
         this.step1=true;
   }
@@ -98,6 +98,7 @@ export class ForgotPasswordComponent {
     let ans;
     this.clientPageService.changePassword(data).subscribe(a=>{
         ans=a;
+        console.log(ans)
         if (ans) {
           this.router.navigate(['ezorIshi'])
         }
@@ -110,14 +111,15 @@ export class ForgotPasswordComponent {
   }
   
 
-  checkPhone(){
-    if(this.phone)
-    if(this.phone.length==10){
-      this.loggedInGuardService.getAllClient(`Phone='${this.phone}'`).subscribe(c => {
+  checkEmail(){
+    this.emailExists=false;
+    if(this.email)
+    if(this.email.indexOf('@')>-1){
+      this.loggedInGuardService.getAllClient(`Mail='${this.email}'`).subscribe(c => {
         if(c.length>0){
           this.client = c[0];
           console.log(c);
-          this.phoneExists=true;
+          this.emailExists=true;
     }})
     }
   }
