@@ -98,22 +98,24 @@ export class ForgotPasswordComponent {
  async changePass() {
     let data = { id: this.client.Id, 
                  newPass: this.step3FormGroup.controls['password'].value }
-    let ans;
-
-    this.clientPageService.changePassword(data).subscribe(a=>{
-        ans=a;
+    //let ans;
+ //await this.clientPageService.changePassword(data).subscribe(a=>{
+  let ans = await this.clientPageService.changePassword(data); 
+  //ans=a;
         console.log(ans)
-        if (ans!=null) { 
+        if (ans!=undefined) { 
           this.succeed=true;
-          
-       this.login(data).then(a=>{
-        console.log(a)
-      })
+          //this.router.navigate(['ezorIshi'])
+          this.loggedInGuardService.setCurrentClient(this.client.Id)
+          this.loggedInGuardService.checkNameAndPass({username:this.client.UserName,password:this.client.UserPassword},false)
+      //  this.login(data).then(a=>{
+      //   console.log(a)
+      //    })
         }
         else{
           console.log('error on change password')
         }
-    });
+    //});
 
   }
 
