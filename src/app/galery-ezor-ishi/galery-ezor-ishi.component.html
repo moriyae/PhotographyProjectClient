@@ -56,10 +56,11 @@
       </button>
     </div>
 
-    <div class="connectedButtonsDiv" >
+    <div class="connectedButtonsDiv">
       <label [innerText]="'תמונות שנבחרו: '+ sumIsSelected"></label>
       <button (click)="saveImgSelected()"
-              class="smallButton">
+              class="smallButton"
+              [disabled]="isAd">
           שמור בחירה
       </button>
     </div>
@@ -126,6 +127,7 @@
       </svg>
 
       <button (click)="imgSelected(img)" 
+              *ngIf="!isAd"
               [innerText]="img['isPublished']==true ? 'בטל פרסום' : 'פרסם'"
               [ngClass]="img['isPublished']==true ? 'b' : 'a'">
       </button>

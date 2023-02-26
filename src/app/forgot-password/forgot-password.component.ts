@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder,FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AdminPageService } from 'src/services/admin-page.service';
 import { ClientPageService } from 'src/services/client-page.service';
@@ -44,6 +45,7 @@ export class ForgotPasswordComponent {
   temporaryPassword='';
   blockNextStep='';
   hide=true;
+  succeed=false;
 
   step1=false;
   step2=false;
@@ -54,6 +56,7 @@ export class ForgotPasswordComponent {
   step3FormGroup!:FormGroup;
 
   constructor(private router: Router, 
+              private adminPageService:AdminPageService,
               private loggedInGuardService: LoggedInGuardService, 
               private formBuilder: FormBuilder,
               private clientPageService: ClientPageService) {}
@@ -92,22 +95,43 @@ export class ForgotPasswordComponent {
         this.step1=true;
   }
 
-  changePass() {
-
-    let data = { id: this.client.Id, newPass: this.step3FormGroup.controls['password'].value }
+ async changePass() {
+    let data = { id: this.client.Id, 
+                 newPass: this.step3FormGroup.controls['password'].value }
     let ans;
+
     this.clientPageService.changePassword(data).subscribe(a=>{
         ans=a;
         console.log(ans)
-        if (ans) {
-          this.router.navigate(['ezorIshi'])
+        if (ans!=null) { 
+          this.succeed=true;
+          
+       this.login(data).then(a=>{
+        console.log(a)
+      })
         }
         else{
-          console.log('error on vhange password')
+          console.log('error on change password')
         }
     });
 
+  }
 
+  async login(data:any){
+    var user={
+      username:this.client.UserName,
+      password:data.newPass
+    }
+
+     await this.loggedInGuardService.checkNameAndPass(user)
+    .then(ans=>{
+    if (!ans)
+      console.log("no")
+    else{
+      console.log("yes")
+      this.client = ans;
+      this.loggedInGuardService.currentClient=ans;
+   } })
   }
   
 

@@ -73,9 +73,11 @@ export class LoggedInGuardService implements CanActivate {
     await this.http.post(`${url}login`, user, { withCredentials: true, reportProgress: true }).toPromise()
     .then(a => {
       if (a == false) {
+        console.log("if")
         return a;
       }
       else {
+        console.log("else")
         this.client = Client.convert(a);
         if (this.client != undefined) {
           this.isLoggedIn = true;
