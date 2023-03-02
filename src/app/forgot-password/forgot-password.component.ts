@@ -102,10 +102,12 @@ export class ForgotPasswordComponent {
  //await this.clientPageService.changePassword(data).subscribe(a=>{
   let ans = await this.clientPageService.changePassword(data); 
   //ans=a;
-        console.log(ans)
+        console.log("ans"+ans)
         if (ans!=undefined) { 
           this.succeed=true;
           //this.router.navigate(['ezorIshi'])
+
+          this.client.UserPassword=data.newPass
           this.loggedInGuardService.setCurrentClient(this.client.Id)
           this.loggedInGuardService.checkNameAndPass({username:this.client.UserName,password:this.client.UserPassword},false)
       //  this.login(data).then(a=>{

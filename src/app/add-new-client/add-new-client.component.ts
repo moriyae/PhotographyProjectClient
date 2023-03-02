@@ -21,6 +21,11 @@ export class AddNewClientComponent implements OnInit {
   isAd=false;
   submitted: boolean = false;
   hide=true;
+  details = {
+    mail: '',
+    sub: ' שם משתמש וסיסמא לאתר',
+    txt: ''
+  }
   constructor(private adminPg: AdminPageService,
               private formBuilder: FormBuilder, 
               private route:ActivatedRoute,
@@ -71,6 +76,11 @@ export class AddNewClientComponent implements OnInit {
     if(ans!=undefined) {
       this.message = ans['message'];
       this.logIn.setCurrentClientUndefined();
+      this.details.mail =''+ this.formGroup.value['mail'];
+      this.details.txt = `שלום ${this.formGroup.value['firstName']}.\nשם המשתמש שלך הוא: ${this.formGroup.value['username']}.\n סיסמתך היא:${this.formGroup.value['password']}.`
+      console.log(this.details);
+      
+      this.logIn.send(this.details).subscribe(r=> {console.log(r)})
     }
     if (this.message!='נא לבחור סיסמא אחרת')
     this.show = false;

@@ -47,9 +47,14 @@ export class ClientPageService {
   }
 
   //משנה סיסמה כשמשתמש שוכח
-  changePassword(data: any): Observable<any>  {
-    console.log(data.id)
-    return this.httpClient.post<any>(`${url}/changePass`,data, { withCredentials: true, reportProgress: true })   
+  // changePassword(data: any): Observable<any>  {
+  //   console.log(data.id)
+  //    return this.httpClient.post<any>(`${url}/changePass`,data, { withCredentials: true, reportProgress: true })   
+  // }
+  async changePassword(data: any) {
+    let ans;
+    await this.httpClient.post(`${url}/changePass`, data, { withCredentials: true, reportProgress: true }).toPromise().then(e => {console.log(e); ans=e})
+    return ans;
   }
 
   //משנה את סטטוס הפרסום של תמונה להפך ממה שהוא
