@@ -16,6 +16,8 @@ import { EventsManagmentComponent } from './events-managment/events-managment.co
 import { DiaryComponent } from './diary/diary.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ClientEventsComponent } from './client-events/client-events.component';
+import { Categories } from './categories-managment/categories.model';
+import { CategoriesManagmentComponent } from './categories-managment/categories-managment.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,7 @@ const routes: Routes = [
         {path:'clients-managment',component:ClientsManagmentComponent,children:[
             {path: 'client/:status', component: AddNewClientComponent },
         ]},
+        {path:'categories-managment',component:CategoriesManagmentComponent},
         {path:'events-managment',component:EventsManagmentComponent,children:[
             {path:'event',component:GaleryEzorIshiComponent},
             {path:'add-event',component:AddNewEventComponent},

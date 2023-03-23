@@ -1,0 +1,50 @@
+<div class="container text-center">
+
+</div>
+<div class="container">
+
+  <div class="row">
+    <button mat-icon-button 
+                    (click)="refresh()" style="margin-left: 29vw">
+              <mat-icon>refresh</mat-icon>
+             </button>
+             <button class="addButton"
+                     (click)="matDialog.open(editCategory);">
+              הוספת קטגוריה
+             </button>
+    </div> 
+    <br>
+    <table class="table table-striped" id="middle" >
+      <thead>
+      <tr>
+        <th>קטגוריה</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let category of categories" id="pointer" (click)="setCurrentCategory(category);matDialog.open(editCategory);">
+          <td [innerText]="category.Name"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+<ng-template #editCategory>
+  <button (click)="closeDialog()">X</button>
+  <form #frm = "ngForm"
+        (ngSubmit)="addCategory()">
+        <div>
+          <label>שם הקטגוריה </label>
+          <input  required="true"
+                  placeholder="קטגוריה"
+                  [(ngModel)]="category.Name"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control"/>
+        </div>
+        <div class="form-group">
+            <button type="submit"
+                    class="submit-button">
+                    אישור
+            </button>
+        </div>
+</form>
+</ng-template>

@@ -51,9 +51,16 @@ export class AdminPageComponent  implements OnInit {
     this.router.navigate(['events-managment'],{relativeTo:this.route});
   }
 
-  profile(){
+  categoriesManagment(){
     this.tabs=[false];
     this.tabs[3]=true;
+    this.adminPageService.setCurrentEventNull();
+    this.router.navigate(['categories-managment'],{relativeTo:this.route});
+  }
+
+  profile(){
+    this.tabs=[false];
+    this.tabs[4]=true;
     console.log(this.user)
     console.log(this.userId)
     this.logInService.setCurrentClient(this.userId);

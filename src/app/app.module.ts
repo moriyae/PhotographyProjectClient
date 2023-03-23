@@ -43,6 +43,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
 import { ClientEventsComponent } from './client-events/client-events.component';
+import { CategoriesManagmentComponent } from './categories-managment/categories-managment.component';
 
 registerLocaleData(localeHe);
 
@@ -64,6 +65,7 @@ registerLocaleData(localeHe);
     DiaryComponent,
     LoginPageComponent,
     ClientEventsComponent,
+    CategoriesManagmentComponent,
   ],
   imports: [
     BrowserModule,

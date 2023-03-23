@@ -39,6 +39,13 @@
 
       <button [ngClass]="tabs[3]? 'tabIn' : 'menuButton'"
               class="menuButton"
+              (click)="categoriesManagment()">
+        <mat-icon>list</mat-icon>
+       קטגוריות  
+      </button>
+
+      <button [ngClass]="tabs[4]? 'tabIn' : 'menuButton'"
+              class="menuButton"
               (click)="profile()">
         <mat-icon>person</mat-icon>
         פרופיל

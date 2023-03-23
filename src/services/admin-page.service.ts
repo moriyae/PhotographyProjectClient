@@ -16,6 +16,7 @@ export class AdminPageService {
   eventSelected!:any|undefined;
   allEvents:any[]=[];
   allClients:any[]=[];
+  allCategories:any[]=[];
 
   constructor(private http: HttpClient,
               private router: Router, 
@@ -62,6 +63,28 @@ export class AdminPageService {
     })
     return a;
   }
+
+    //מחזיר את כל הקטגוריות
+  /* async getAllCategories(){
+      var a= this.http.get(`http://localhost:8080/getAllCategories`, { withCredentials: true, reportProgress: true }).toPromise()
+      //console.log(a);  
+      .then((e:any)=>{
+        this.allCategories=e;
+        console.log(e);
+        console.log(this.allCategories);
+      })
+      //return a;
+    }*/
+
+    getAllCategories(): Observable<any[]> {
+      var s = this.http.get<any[]>(`http://localhost:8080/getAllCategories`, { withCredentials: true, reportProgress: true });
+      return s ;
+    }
+
+    // getAllCategoriesWithImages(): Observable<any[]> {
+    //   var s = this.http.get<any[]>(`http://localhost:8080/getAllCategoriesWithImages`, { withCredentials: true, reportProgress: true });
+    //   return s ;
+    // }
 
   //מחזיר את כל האירועים ולכל אירוע את הלקוח שלו
   async getAllEventsWithDetails(){

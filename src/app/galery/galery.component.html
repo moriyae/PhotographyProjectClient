@@ -2,8 +2,8 @@
   <div class="works-bag" id="contact">תיק עבודות</div>
     <div class="galeryButtonsDiv">
         <div *ngFor="let category of categories">
-            <div (click)="setActive(category.id)" [ngClass]="category.isActive ? 'active' : 'btn-img'">
-                {{category.name}}
+            <div (click)="setActive(category.Id)" [ngClass]="category.isActive ? 'active' : 'btn-img'">
+                {{category.Name}}
             </div>
         </div>
     </div>
