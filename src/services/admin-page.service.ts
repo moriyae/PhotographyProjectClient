@@ -112,6 +112,7 @@ export class AdminPageService {
     return this.http.get(`${url}/deletingAnEvent/${id}`, { withCredentials: true, reportProgress: true })
   }
 
+
   //מחיקת תמונה
   deleteImg(id:any) {
     let c = this.http.post(`${url}/deletingImg`, id, { withCredentials: true, reportProgress: true })
@@ -127,4 +128,11 @@ export class AdminPageService {
     }
     return isAdmin;
   }
+
+    //הוספת קטגוריית צילום עי מנהל בלבד
+    addCategory(name:any):Observable<any> {
+      console.log(name)
+      return this.http.post(`${url}/addCategory`,name, { withCredentials: true, reportProgress: true })
+    }
+  
 }

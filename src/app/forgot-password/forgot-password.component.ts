@@ -34,13 +34,13 @@ export class ForgotPasswordComponent {
     sub: 'סיסמא זמנית',
     txt: ''
   }
-  email!: string;
+  phone!: string;
   code!: string;
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   client!: Client;
   clicked = false;
   show: boolean = false;
-  emailExists=false;
+  phoneExists=false;
   vertifyPassword='';
   temporaryPassword='';
   blockNextStep='';
@@ -67,7 +67,7 @@ export class ForgotPasswordComponent {
 
   createForm() {
     this.step1FormGroup = this.formBuilder.group({
-       email: ['', [Validators.required,Validators.email]]
+       phone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
     });
 
     this.step2FormGroup=this.formBuilder.group({
@@ -89,8 +89,10 @@ export class ForgotPasswordComponent {
       this.temporaryPassword += (Math.floor(Math.random() * 10)).toString()
         this.details.mail = this.client.Mail;
         this.details.txt = `שלום ${this.client.FirstName}, סיסמתך הזמנית היא: ${this.temporaryPassword}`
-        this.loggedInGuardService.send(this.details).subscribe(r=> {console.log(r)})
-        this.emailExists=true;
+        this.loggedInGuardService.send(this.details).subscribe(r=> {
+          //console.log(r)
+        })
+        this.phoneExists=true;
         this.clicked = true;
         this.step1=true;
   }
@@ -102,7 +104,7 @@ export class ForgotPasswordComponent {
  //await this.clientPageService.changePassword(data).subscribe(a=>{
   let ans = await this.clientPageService.changePassword(data); 
   //ans=a;
-        console.log("ans"+ans)
+        //console.log("ans"+ans)
         if (ans!=undefined) { 
           this.succeed=true;
           //this.router.navigate(['ezorIshi'])
@@ -139,15 +141,15 @@ export class ForgotPasswordComponent {
   }
   
 
-  checkEmail(){
-    this.emailExists=false;
-    if(this.email)
-    if(this.email.indexOf('@')>-1){
-      this.loggedInGuardService.getAllClient(`Mail='${this.email}'`).subscribe(c => {
+  checkPhone(){
+    this.phoneExists=false;
+    if(this.phone != null && this.phone!=undefined)
+    if(this.phone.length==10){
+      this.loggedInGuardService.getAllClient(`Phone='${this.phone}'`).subscribe(c => {
         if(c.length>0){
           this.client = c[0];
-          console.log(c);
-          this.emailExists=true;
+         // console.log(c);
+          this.phoneExists=true;
     }})
     }
   }

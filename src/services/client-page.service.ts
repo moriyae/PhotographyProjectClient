@@ -53,7 +53,9 @@ export class ClientPageService {
   // }
   async changePassword(data: any) {
     let ans;
-    await this.httpClient.post(`${url}/changePass`, data, { withCredentials: true, reportProgress: true }).toPromise().then(e => {console.log(e); ans=e})
+    console.log('change pass', data);
+   // await this.httpClient.post(`${url}/changePass`, data, { withCredentials: true, reportProgress: true }).toPromise().then(e => {console.log(e); ans=e})
+    await this.httpClient.post(`http://localhost:8080/changePass`, data, { withCredentials: true, reportProgress: true }).toPromise().then(e => {console.log(e); ans=e})
     return ans;
   }
 
@@ -62,5 +64,18 @@ export class ClientPageService {
     let ans;
       await this.httpClient.post(`${url}/changePublicationOfImage`, img, { withCredentials: true, reportProgress: true }).toPromise().then(e => {console.log(e); ans=e})
       return ans;
+    }
+
+    //מעתיק את התמונה לתיקיה המתאימה בתמונות מפורסמות לפי קוד הקטגוריה של האירוע
+    async imgSelected(img:any){
+      let ans;
+         await this.httpClient.post(`${url}/copyImg`, img, { withCredentials: true, reportProgress: true }).toPromise().then(e => {console.log(e); ans=e})
+         return ans;
+    }
+
+    async deleteImgFromPublic(img:any){
+      let ans;
+         await this.httpClient.post(`${url}/deleteImgFromPublic`, img, { withCredentials: true, reportProgress: true }).toPromise().then(e => {console.log(e); ans=e})
+         return ans;
     }
 }

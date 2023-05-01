@@ -46,7 +46,6 @@ export class AddNewClientComponent implements OnInit {
       username: [this.user? this.user.UserName : '', [Validators.required]],
       password: [this.user? this.user.UserPassword : '', Validators.compose([Validators.required])],
       confirmPassword: [this.user? this.user.UserPassword : '', [Validators.required]],
-      isAdmin:[this.user? (this.user.IsAdmin ? "1" : "0") :"0",Validators.required]
     },{ 
         validator: ConfirmedValidator('password', 'confirmPassword')
       })

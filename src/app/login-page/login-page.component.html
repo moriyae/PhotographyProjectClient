@@ -20,6 +20,7 @@
              *ngIf="formGroup.controls['username'].errors!['required']">
           שדה חובה
         </div>
+        
     </div>
 
     <div class="formControlsDiv">
@@ -44,6 +45,13 @@
                         סיסמה לא חוקית
                     </div>
             </div>
+
+            
+    <div *ngIf="messege!=''">
+        <div class="errorText">
+            {{messege}}
+        </div>  
+    </div>
     
     <button class="btnOK" 
             type="submit" 

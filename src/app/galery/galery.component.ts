@@ -21,31 +21,13 @@ images:string[]=[]
 
 export class GaleryComponent implements OnInit {
   Events: any[] = [];
-  outdoorPhotoes:string[]=[];
-  eventsPhotos:string[]=[];
-  foodPhotos:string[]=[];
-  InteriorDesignPhotos:string[]=[];
-  productsPhotos:string[]=[];
-  studioPhotos:string[]=[];
-  //allImages:string[][]=[];
   active = [false] ;
-  /*categories=[{id:0,name:'צילומי חוץ',isActive:true ,images:this.outdoorPhotoes},
-              {id:1,name:'צילומי אירועים',isActive:false,images:this.eventsPhotos},
-              {id:2,name:'צילומי מזון',isActive:false,images:this.foodPhotos},
-              {id:3,name:'צילומי עיצוב פנים',isActive:false,images:this.InteriorDesignPhotos},
-              {id:4,name:'צילומי מוצרים',isActive:false,images:this.productsPhotos},
-              {id:5,name:'צילומי סטודיו',isActive:false,images:this.studioPhotos},
-             ]*/
- 
   categories:CategoriesTabs[]=[];
-allImages=[];
- 
+  allImages=[];
   currentCategory:string[]=[];
-
   lastIndex!: number;
   imgs:string[]=[];
   load=true;
-  ///images:string[]=[]
 
   constructor(private loggedInGuardService:LoggedInGuardService,
               private adminPageService:AdminPageService) { }
@@ -67,10 +49,16 @@ allImages=[];
             if (element.Category == c.Id){
               c.images.push(element.PathImg);
             }
-      })
+      }) 
+
+      //מציג בדף הבית רק את הקטגוריות שיש להם תמונות מפורסמות
+      //אחרת אין ענין להציג כפתור שלא מביא שום דבר
+       if(c.images.length!=0)
         this.categories.push(c);
     });
-     this.currentCategory = this.categories[0].images;
+    setTimeout(() => {
+      this.currentCategory = this.categories[0].images;
+    }, 1000); 
    }) 
 })
 }
@@ -79,20 +67,12 @@ allImages=[];
   setActive(id:number){
     this.categories.map((c)=>{
       c.isActive = false;
-      if(c.Id = id){
+      if(c.Id == id){
         c.isActive=true;
+        this.currentCategory=c.images;
       }
-
     })
-   /* this.categories[0].isActive=false;
-    this.categories[1].isActive=false;
-    this.categories[2].isActive=false;
-    this.categories[3].isActive=false;
-    this.categories[4].isActive=false;
-    this.categories[5].isActive=false;
-    this.categories[id].isActive=true;*/
     this.lastIndex = id;
-    this.currentCategory=this.categories[id].images;
-  }
+ }
 
 }

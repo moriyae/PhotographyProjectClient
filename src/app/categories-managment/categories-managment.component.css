@@ -58,6 +58,7 @@
     padding-left: 13px;
     padding-top: 3px;
     padding-bottom: 3px;
+    padding: 1vh;
     border-bottom: rgb(31, 0, 46) 1px solid;
     border-top: rgb(31, 0, 46) 1px solid;
   }
@@ -70,6 +71,7 @@
   tr{
     height: min-content;
     width: 600px;
+
   }
   
   thead th, tfoot th, tfoot td {
@@ -106,3 +108,65 @@
     font-weight: bold;
      
 }
+
+
+.row{
+  margin-top: 2vh;
+}
+
+
+.form-control{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  direction: rtl;
+  font-size: large;
+  border: 0.5px solid rgb(61, 0, 92);
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 15vw;
+  background-color: white;
+  margin: 10px;
+  margin-left: 0px!important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px 10px 10px 10px !important;
+}
+
+.form-control:focus{
+  outline: none;
+}
+
+.submit-button{
+  margin: 10px;
+  background-color: rgb(42, 0, 63) ;
+  color: white;
+  border-radius: 8px;
+  font-weight: normal;
+  font-size: large;
+  padding: 7px;
+  text-align: center;
+  cursor: pointer;
+  border:none;
+  min-width: 12vw;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.submit-button:disabled{
+  cursor: not-allowed;
+}
+.submit-button:hover{
+  border: 1px solid rgb(42, 0, 63);
+  color: rgb(42, 0, 63) ;
+  background-color: white;
+}
+
+.addCForm{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  direction: rtl;
+  font-size: large;
+  padding: 5vh;
+  display: block;
+  text-align: center;
+  align-items: center;
+}
+
+
+

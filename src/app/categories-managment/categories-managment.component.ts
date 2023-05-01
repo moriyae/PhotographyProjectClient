@@ -42,7 +42,10 @@ export class CategoriesManagmentComponent {
  
   addCategory() {
     if (this.category.Id == 0 ){
-       console.log('add')
+       this.adminPageService.addCategory(this.category).subscribe(a=>{
+        if(a==true) this.ngOnInit();
+        else(alert('שגיאה'))
+       })
        this.closeDialog()
     }
     else{

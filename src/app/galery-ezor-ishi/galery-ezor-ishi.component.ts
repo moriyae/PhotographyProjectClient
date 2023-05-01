@@ -82,6 +82,8 @@ export class GaleryEzorIshiComponent implements OnInit {
   }   
 
   viewSelect(img:any) {
+    if(this.isAd==true)
+      return;
     img.IsSelected = !img.IsSelected
     if (img.IsSelected)
       this.sumIsSelected++
@@ -196,17 +198,17 @@ export class GaleryEzorIshiComponent implements OnInit {
     this.popup2Open=false
   }
  
-    imgSelected(img:any){
-      this.cliPg.changePublicationOfImage(img).then((a:any)=>{
-        var value= img.isPublished==true?false:true;
-        console.log(value) 
+   async imgSelected(img:any){
+      if(img.isPublished==true)
+         await this.cliPg.deleteImgFromPublic(img);
+      else
+        await this.cliPg.imgSelected(img);
+     /* this.cliPg.changePublicationOfImage(img).then((a:any)=>{
+     */ var value= img.isPublished==true?false:true;
         this.imagesInfos.forEach(element=>{
           if(element.Id==img.Id){
             element.isPublished=value;
-            console.log(this.imagesInfos)
-          }
-        })
-      })
+          }})
     } 
 
     back(){

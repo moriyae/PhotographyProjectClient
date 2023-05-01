@@ -5,7 +5,7 @@
 
   <div class="row">
     <button mat-icon-button 
-                    (click)="refresh()" style="margin-left: 29vw">
+                    (click)="refresh()" style="margin-left: 46vw">
               <mat-icon>refresh</mat-icon>
              </button>
              <button class="addButton"
@@ -17,7 +17,7 @@
     <table class="table table-striped" id="middle" >
       <thead>
       <tr>
-        <th>קטגוריה</th>
+        <th>קטגוריות קיימות:</th>
       </tr>
       </thead>
       <tbody>
@@ -30,16 +30,16 @@
 
 <ng-template #editCategory>
   <button (click)="closeDialog()">X</button>
-  <form #frm = "ngForm"
+  <form #frm = "ngForm" class="addCForm"
         (ngSubmit)="addCategory()">
         <div>
           <label>שם הקטגוריה </label>
           <input  required="true"
-                  placeholder="קטגוריה"
                   [(ngModel)]="category.Name"
                   [ngModelOptions]="{standalone: true}"
                   class="form-control"/>
         </div>
+        <br>
         <div class="form-group">
             <button type="submit"
                     class="submit-button">
