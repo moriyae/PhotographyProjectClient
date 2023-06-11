@@ -61,9 +61,9 @@
                [matAutocomplete]="autoCategories">
         <mat-autocomplete #autoCategories="matAutocomplete">
           <mat-option *ngFor="let option of categories" 
-                      [value]="option"
+                      [value]="option.Name"
                       (onSelectionChange)="selectCategory(option)">
-            {{option}}
+            {{option.Name}}
           </mat-option>
         </mat-autocomplete>
       </div>

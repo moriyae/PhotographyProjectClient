@@ -37,6 +37,7 @@ export class GaleryComponent implements OnInit {
     this.load=true;
     this.loggedInGuardService.getPublishedImages().subscribe(array=>{
        this.allImages=array;    
+       console.log(array);
        this.adminPageService.getAllCategories().subscribe(c=>{
           this.adminPageService.allCategories = c;
           this.adminPageService.allCategories.forEach(category => {

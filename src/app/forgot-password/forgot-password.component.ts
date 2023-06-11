@@ -90,7 +90,7 @@ export class ForgotPasswordComponent {
         this.details.mail = this.client.Mail;
         this.details.txt = `שלום ${this.client.FirstName}, סיסמתך הזמנית היא: ${this.temporaryPassword}`
         this.loggedInGuardService.send(this.details).subscribe(r=> {
-          //console.log(r)
+
         })
         this.phoneExists=true;
         this.clicked = true;
@@ -100,27 +100,16 @@ export class ForgotPasswordComponent {
  async changePass() {
     let data = { id: this.client.Id, 
                  newPass: this.step3FormGroup.controls['password'].value }
-    //let ans;
- //await this.clientPageService.changePassword(data).subscribe(a=>{
-  let ans = await this.clientPageService.changePassword(data); 
-  //ans=a;
-        //console.log("ans"+ans)
+    let ans = await this.clientPageService.changePassword(data); 
         if (ans!=undefined) { 
           this.succeed=true;
-          //this.router.navigate(['ezorIshi'])
-
           this.client.UserPassword=data.newPass
           this.loggedInGuardService.setCurrentClient(this.client.Id)
           this.loggedInGuardService.checkNameAndPass({username:this.client.UserName,password:this.client.UserPassword},false)
-      //  this.login(data).then(a=>{
-      //   console.log(a)
-      //    })
         }
         else{
           console.log('error on change password')
         }
-    //});
-
   }
 
   async login(data:any){
@@ -148,7 +137,7 @@ export class ForgotPasswordComponent {
       this.loggedInGuardService.getAllClient(`Phone='${this.phone}'`).subscribe(c => {
         if(c.length>0){
           this.client = c[0];
-         // console.log(c);
+          console.log(c);
           this.phoneExists=true;
     }})
     }

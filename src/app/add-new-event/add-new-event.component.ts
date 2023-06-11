@@ -22,9 +22,11 @@ export class AddNewEventComponent implements OnInit {
   selectedCategoryValue!:string;
   selectedClientId!:number;
   show=true;
-
+/*
   categories=['צילומי אירועים','צילומי מזון','צילומי חוץ','צילומי עיצוב פנים','צילומי סטודיו','צילומי מוצרים'];
-    
+ */
+categories!:any|undefined;   
+
   constructor(private logInService:LoggedInGuardService,
               private adminPg: AdminPageService, 
               private logIn: LoggedInGuardService,
@@ -32,6 +34,9 @@ export class AddNewEventComponent implements OnInit {
 
   ngOnInit() {
     this.client = this.logIn.client;
+    this.adminPg.getAllCategories( ).subscribe(c=>{
+      this.categories = c ;
+    })
     this.eventSelected= this.adminPg.eventSelected;
     this.logInService.getAllClients().subscribe(c=>{
       this.clients=c;
@@ -52,7 +57,7 @@ export class AddNewEventComponent implements OnInit {
       NameEvent: [this.eventSelected!=undefined? this.eventSelected.NameEvent : '', Validators.required],
       Date: [this.eventSelected!=undefined? this.eventSelected.Date : '', Validators.required],
       details:[this.eventSelected!=undefined? this.eventSelected.details : ''],
-      Category:[this.eventSelected!=undefined? this.eventSelected.Category : ''],
+      Category:[this.eventSelected!=undefined? this.eventSelected.Category : 0],
       ClientId:[this.eventSelected!=undefined? this.eventSelected.clientId : ''],
       eventId:[this.eventSelected!=undefined? this.eventSelected.Id : -1],
     });
@@ -69,7 +74,7 @@ export class AddNewEventComponent implements OnInit {
   }
 
   selectCategory(categoryValue:any){
-    this.formGroup.controls['Category'].setValue(categoryValue);
+    this.formGroup.controls['Category'].setValue(categoryValue.Id);
   }
 
   addNewClient(){

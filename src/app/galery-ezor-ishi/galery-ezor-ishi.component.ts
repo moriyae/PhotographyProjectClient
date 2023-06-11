@@ -192,7 +192,6 @@ export class GaleryEzorIshiComponent implements OnInit {
   
   beforeDeleted(yesNo: boolean){
     if(yesNo){
-      console.log("in if")
       this.adminPg.deleteImg(this.details).subscribe(ans => {console.log(ans), this.ngOnInit()})
     }
     this.popup2Open=false
