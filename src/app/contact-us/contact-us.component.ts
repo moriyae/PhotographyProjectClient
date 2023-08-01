@@ -20,7 +20,7 @@ export class ContactUsComponent implements OnInit {
   }
   submitted!:any
   details={
-    mail: '4321vz@gmail.com',
+    mail: 'shmuelphotographer1@gmail.com',
     sub: '',
     txt: ''
   }
