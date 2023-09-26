@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddNewClientComponent } from './add-new-client.component';
+import { AddNewClientComponent } from './AddNewClientComponent';
 
 describe('AddNewClientComponent', () => {
   let component: AddNewClientComponent;

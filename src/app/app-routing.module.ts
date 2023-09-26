@@ -8,7 +8,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { GaleryComponent } from './galery/galery.component';
 import { GaleryEzorIshiComponent } from './galery-ezor-ishi/galery-ezor-ishi.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { AddNewClientComponent } from './add-new-client/add-new-client.component';
+import { AddNewClientComponent } from './add-new-client/AddNewClientComponent';
 import { AddNewEventComponent } from './add-new-event/add-new-event.component';
 import { ErrComponent } from './err/err.component';
 import { ClientsManagmentComponent } from './clients-managment/clients-managment.component';

@@ -202,8 +202,7 @@ export class GaleryEzorIshiComponent implements OnInit {
          await this.cliPg.deleteImgFromPublic(img);
       else
         await this.cliPg.imgSelected(img);
-     /* this.cliPg.changePublicationOfImage(img).then((a:any)=>{
-     */ var value= img.isPublished==true?false:true;
+     var value= img.isPublished==true?false:true;
         this.imagesInfos.forEach(element=>{
           if(element.Id==img.Id){
             element.isPublished=value;
