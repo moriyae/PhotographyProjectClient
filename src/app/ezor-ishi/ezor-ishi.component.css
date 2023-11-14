@@ -14,7 +14,18 @@ form{
  
    
 }
-
+#stay{
+  position: sticky;
+  top:0%;
+  left: 0%;
+  opacity: 100;
+}
+/* #stayRight{
+  position: fixed;
+  height: calc(100vh - 60px);
+  bottom: 11px;
+  right: 8px;
+} */
 .router-div{
  
   

@@ -1,5 +1,5 @@
 <form>
-  <header>
+  <header id="stay">
       <h1 [innerText]="headerText" ></h1>
       <button class="exitButton" 
               mat-button 
@@ -8,10 +8,10 @@
       </button>
   </header>
 
-  <div class="pageDiv">
+  <div class="pageDiv" >
   <div class="buttons-div">
 
-  <mat-menu #menu="matMenu">
+  <mat-menu #menu="matMenu" >
      <button mat-menu-item (click)="exit()" >התנתק</button>
   </mat-menu>
 
@@ -24,7 +24,7 @@
 </button>
 <button [ngClass]="tabs[1]? 'tabIn' : 'menuButton'"
         class="menuButton"
-        (click)="profile()">
+        (click)="profile()" >
   <mat-icon>person</mat-icon>
 פרופיל
 </button>

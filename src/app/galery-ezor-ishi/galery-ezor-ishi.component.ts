@@ -6,6 +6,9 @@ import { AdminPageService } from 'src/services/admin-page.service';
 import { ClientPageService } from 'src/services/client-page.service';
 import { LoggedInGuardService } from 'src/services/logged-in-guard.service';
 import { Client } from '../add-new-client/add-new-client.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-galery-ezor-ishi',
@@ -14,7 +17,9 @@ import { Client } from '../add-new-client/add-new-client.model';
 })
 
 export class GaleryEzorIshiComponent implements OnInit {
+  end=true
   dialogOpen=true
+  client!: Client;
   allImges!: Observable<any>;
   imagesInfos:any[] = [];
   sumIsSelected!: number  
@@ -29,13 +34,22 @@ export class GaleryEzorIshiComponent implements OnInit {
   formData: FormData = new FormData();
   popupOpen: boolean = false;
   popup2Open: boolean = false;
+  popup3Open: boolean=false;
   progress = 0;
   enableButton=false;
   eventClient:Client=new Client;
   eventName='';
-
-  constructor(private cliPg: ClientPageService,
+  detailss = {
+    mail:'',
+    sub: 'סיום בחירת תמונות ',
+    txt: ''
+  }
+  constructor(
+    
+              private cliPg: ClientPageService,
+              private snackBar:MatSnackBar,
               private adminPg: AdminPageService,
+              public matDialog:MatDialog,
               private location:Location,
               private logIn: LoggedInGuardService) { }
 
@@ -56,7 +70,9 @@ export class GaleryEzorIshiComponent implements OnInit {
     this.allImges.subscribe(i => { 
       console.log(i)
       this.imagesInfos = i
-      this.imagesInfos.forEach(img => { if (img['IsSelected']) this.sumIsSelected++ })
+      this.imagesInfos.forEach(img => { if (img['IsSelected']) this.sumIsSelected++;
+      console.log(img.Name);
+       })
       this.isAd = this.logIn.isAdminUser()
       console.log(this.imagesInfos)
     })
@@ -82,9 +98,18 @@ export class GaleryEzorIshiComponent implements OnInit {
   }   
 
   viewSelect(img:any) {
+    if(this.end==false)
+      return;
     if(this.isAd==true)
       return;
     img.IsSelected = !img.IsSelected
+    if(this.sumIsSelected==1){
+      this.end=false
+      this.matDialog.closeAll();
+      this.snackBar.open('!הגעת למכסה של מקסימום תמונות שאפשר לבחור','X')
+      if(this.end==false)
+      return;
+    }
     if (img.IsSelected)
       this.sumIsSelected++
     else
@@ -93,6 +118,21 @@ export class GaleryEzorIshiComponent implements OnInit {
 
   saveImgSelected() {
     this.cliPg.updateImgSelected(this.imagesInfos)
+  }
+   async endselect(){
+   
+    this.message=`האם אתה בטוח שסיימת לבחור את כל התמונות? \n פעולה זו תשלח לצלם את התמונות ולא יהיה ניתן לשנות!`
+    this.popup3Open=true
+  }
+  endselectpop(yesNo: boolean){
+   if(yesNo){
+    sessionStorage.clear()
+    this.detailss.mail ='shmuelphotographer1@gmail.com'       ;
+    this.detailss.txt = `שלום שמואל,\n בחירת התמונות של הלקוח ${this.eventClient.FirstName } ${this.eventClient.LastName} בארוע ${this.eventName} הסתיימה!`
+    this.logIn.send(this.detailss).subscribe(r=> {})
+   }
+   this.popup3Open=false
+   this.end=false
   }
   
   onSelectedFile(event:any) {

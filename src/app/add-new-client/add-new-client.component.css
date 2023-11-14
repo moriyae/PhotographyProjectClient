@@ -6,10 +6,7 @@ p{
     padding-bottom: 0px;
     
   }
-  .scroll-container {
-    height: 100vh;
-    overflow-y: scroll;
-  }
+  
   .form-control-passwords{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     direction: rtl;

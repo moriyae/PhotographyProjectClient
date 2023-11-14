@@ -47,7 +47,7 @@
 
     </mat-menu>
 
-    <div class="connectedButtonsDiv">    
+    <div class="connectedButtonsDiv" >    
       <label>מה להציג?</label>
       <button (click)="viewImgSelected()"
               *ngIf="imagesInfos && imagesInfos.length>0"
@@ -55,15 +55,20 @@
           {{selectedImgsText}}
       </button>
     </div>
-
+    <div class="connectedButtonsDiv"><button (click)="endselect()"
+      class="smallButton"
+      *ngIf="!isAd">
+  סיים בחירה
+</button></div>
     <div class="connectedButtonsDiv">
       <label [innerText]="'תמונות שנבחרו: '+ sumIsSelected"></label>
       <button (click)="saveImgSelected()"
               class="smallButton"
-              [disabled]="isAd">
+              *ngIf="!isAd">
           שמור בחירה
       </button>
     </div>
+
 
     <div class="connectedButtonsDiv">
       <label *ngIf="enableButton">
@@ -96,7 +101,14 @@
   <button class="a" (click)="beforeDeleted(false)">לא </button>
 </div>
 </div>
-
+<div id="popup2" 
+*ngIf="popup3Open"> 
+<label [innerText]="message"></label>
+<div>
+<button class="b" (click)="endselectpop(true)">כן </button>
+<button class="a" (click)="endselectpop(false)">לא </button>
+</div>
+</div>
   </div>
 
     <div *ngFor="let img of imagesInfos" 

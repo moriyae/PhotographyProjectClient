@@ -30,7 +30,8 @@
         <th>לקוח</th>
         <th>צפה</th>
         <th>מחק</th>
-      </tr>
+        
+    </tr>
       </thead>
       <tbody>
       <tr *ngFor="let event of allEvents | filter:searchText let i=index" 
@@ -43,6 +44,8 @@
           <td [innerText]="event.FirstName+' '+event.LastName" (click)="matDialog.open(dialog);onSelectClient(event.clientId)"></td>
           <td><mat-icon (click)="onSelectEvent(event)">arrow_left_alt</mat-icon></td>
           <td><mat-icon (click)="onSelectEventToDelete(event.eventId);matDialog.open(deleteDialog);">delete</mat-icon></td>
+          
+
       </tr>
       </tbody>
     </table>

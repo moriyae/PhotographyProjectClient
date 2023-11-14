@@ -173,6 +173,7 @@ mat-menu{
   }
 
   .connectedButtonsDiv{
+    position: sticky;
     display: flex;
     flex-direction: column;
     align-items: stretch;

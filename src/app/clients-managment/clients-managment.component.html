@@ -34,11 +34,13 @@
         <th>טלפון</th>
         <th>מייל</th>
         <th></th>
+        <th>הלקוח פעיל?</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let client of clients | filter:searchText let i=index" id="pointer" 
-           (click)="viewClient(client)">
+      <tr *ngFor="let client of clients  | filter:searchText let i=index " id="pointer" 
+           (click)="viewClient(client)" >
+           <ng-container *ngIf="client.IsAdmin==false">
           <td [innerText]=i+1></td>
           <td [innerText]="client.FirstName"></td>
           <td [innerText]="client.LastName"></td>
@@ -50,6 +52,9 @@
             <mat-icon (click)="matDialog.open(editClient);onSelectClient(client.Id)">edit</mat-icon>
          
           </td>
+          <td *ngIf="client.IsActive==true">כן</td>
+          <td *ngIf="client.IsActive==false">לא</td>
+        </ng-container>
       </tr>
       </tbody>
     </table>

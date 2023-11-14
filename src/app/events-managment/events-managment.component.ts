@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-events-managment',
   templateUrl: './events-managment.component.html',
-  styleUrls: ['./events-managment.component.css']
+  styleUrls: ['./events-managment.component.css'],
 })
 export class EventsManagmentComponent {
   clients: Client[]=[]
@@ -78,7 +78,7 @@ export class EventsManagmentComponent {
     this.adminPageService.deleteEvent(id).subscribe(a=>{
       if(a){
         this.matDialog.closeAll();
-        this.snackBar.open('האירוע נמחק בהצלחה!','X')
+        this.snackBar.open('!האירוע נמחק בהצלחה','X')
         this.refresh();
       }
     })

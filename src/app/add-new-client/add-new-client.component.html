@@ -1,10 +1,9 @@
-<body class="scroll-container">
+<body>
       <h4 *ngIf="message" [innerText]="message"></h4>
       <form #frm = "ngForm"
             *ngIf="show" 
              [formGroup]="formGroup" 
              (ngSubmit)="addClient()">
-             <!-- <h1>הוסף לקוח חדש</h1> -->
         <div>
             <label>שם פרטי</label>
             <input  formControlName="firstName" 
@@ -118,7 +117,13 @@
                                 *ngIf="formGroup.controls['confirmPassword'].errors!['confirmedValidator']">
                                 סיסמאות לא זהות
                             </div>
-                    </div>                 
+                    </div> 
+                    <div class="radio"> לקוח פעיל?
+                        <input type="radio" name="active">
+                        <label >כן</label>
+                        <input type="radio"name="active" >
+                        <label>לא</label>
+                    </div>                
             </div>
             <a (click)="hide=!hide">{{hide? "להצגת הסיסמה":"להסתרת הסיסמה"}}</a>
 
