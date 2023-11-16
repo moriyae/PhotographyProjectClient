@@ -38,7 +38,7 @@ export class LoginPageComponent{
   createForm(){
     this.formGroup = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+      password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]]
     });
   }
 

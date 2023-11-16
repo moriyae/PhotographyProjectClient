@@ -195,6 +195,7 @@ mat-menu{
   border-radius: 12px;
   font-weight: normal !important;
   border:none;
+  cursor: pointer;
 }
 
 .smallButton:disabled{

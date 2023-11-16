@@ -17,7 +17,9 @@ import { Router } from '@angular/router';
 })
 
 export class GaleryEzorIshiComponent implements OnInit {
+  flag=false
   end=true
+  searchText!:any;
   dialogOpen=true
   client!: Client;
   allImges!: Observable<any>;
@@ -80,6 +82,7 @@ export class GaleryEzorIshiComponent implements OnInit {
  
   viewImgSelected() {
     if(this.selectedImgsText==='תמונות שנבחרו'){
+      this.flag=true
       this.imagesInfos = this.imagesInfos.filter((img) => img['IsSelected'] == true)
       console.log(this.imagesInfos)
       this.selectedImgsText='כל התמונות'
@@ -87,6 +90,7 @@ export class GaleryEzorIshiComponent implements OnInit {
 
     else{
       this.allImges.subscribe(i => {
+        this.flag=false
         this.sumIsSelected=0
         this.imagesInfos = i
         this.imagesInfos.forEach(img => { if (img['IsSelected']) this.sumIsSelected++ })
@@ -96,7 +100,9 @@ export class GaleryEzorIshiComponent implements OnInit {
       this.selectedImgsText='תמונות שנבחרו' 
     }
   }   
-
+  print(){
+      window.print();  
+  }
   viewSelect(img:any) {
     if(this.end==false)
       return;
