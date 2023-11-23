@@ -1,109 +1,107 @@
 <form>
+  <div class="relative">
+    <button mat-icon-button 
+    (click)="back()"
+    style="float:right" class="fixed right">
+<mat-icon>arrow_right_alt</mat-icon>
+</button>
+<div class="fixed center" >{{eventClient.FirstName+' '+eventClient.LastName+', '+eventName}}
+</div>
+<div class="buttonsDiv" class="fixed rightt">
   <button mat-icon-button 
-          (click)="back()"
-          style="float:right">
-    <mat-icon>arrow_right_alt</mat-icon>
+          style="float:right;"
+          [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
   </button>
 
-  {{eventClient.FirstName+' '+eventClient.LastName+', '+eventName}}
+  <mat-menu #menu="matMenu" >
 
-  <div class="buttonsDiv">
+    <button (click)="fileUpload.click()"
+            *ngIf="isAd"
+            mat-menu-item>
+      <mat-icon>camera_enhance</mat-icon>
+       העלה תמונות
+    </button>
+      <input type="file" 
+             #fileUpload
+             style="display: none;"
+             multiple 
+             (change)="selectFiles($event)"
+             accept="jpg"/>
 
-
-    <button mat-icon-button 
-            style="float:right;"
-            [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
+    <button mat-menu-item
+            [disabled]="imagesInfos &&  !(imagesInfos.length>1)" 
+            (click)="downLoadAllImg()">
+      <mat-icon>download</mat-icon>
+      <span>הורד הכל</span>
     </button>
 
-    <mat-menu #menu="matMenu">
-
-      <button (click)="fileUpload.click()"
-              *ngIf="isAd"
-              mat-menu-item>
-        <mat-icon>camera_enhance</mat-icon>
-         העלה תמונות
-      </button>
-        <input type="file" 
-               #fileUpload
-               style="display: none;"
-               multiple 
-               (change)="selectFiles($event)"
-               accept="jpg"/>
-
-      <button mat-menu-item
-              [disabled]="imagesInfos &&  !(imagesInfos.length>1)" 
-              (click)="downLoadAllImg()">
-        <mat-icon>download</mat-icon>
-        <span>הורד הכל</span>
-      </button>
-
-      <button mat-menu-item
-              [disabled]="imagesInfos && !(imagesInfos.length>0)" 
-              (click)="deleteAllImg();">
-        <mat-icon>delete</mat-icon>
-        <span>מחק הכל</span>
-      </button>
-
-    </mat-menu>
-
-    <div class="connectedButtonsDiv" >    
-      <label>מה להציג?</label>
-      <button (click)="viewImgSelected()"
-              *ngIf="imagesInfos && imagesInfos.length>0"
-              class="smallButton">
-          {{selectedImgsText}}
-      </button>
-    </div>
-    <div class="connectedButtonsDiv"><button (click)="endselect()"
-      class="smallButton"
-      *ngIf="!isAd">
-  סיים בחירה
-</button></div>
-<div class="connectedButtonsDiv"><button (click)="print()"
-  class="smallButton"
- *ngIf="isAd" >
-הדפס
-</button></div>
-    <div class="connectedButtonsDiv">
-      <label [innerText]="'תמונות שנבחרו: '+ sumIsSelected"></label>
-      <button (click)="saveImgSelected()"
-              class="smallButton"
-              *ngIf="!isAd">
-          שמור בחירה
-      </button>
-    </div>
-
-
-    <div class="connectedButtonsDiv">
-      <label *ngIf="enableButton">
-        {{selectedFiles.length}} קבצים הועלו
-      </label>
-
-      <button *ngIf="enableButton"
-              class="smallButton"
-              (click)="uploadFile()">
-          אישור
-      </button>
-    </div>
-  <mat-menu #premission="matMenu">
-   
-  <div id="popup1"> 
-    <label [innerText]="message"></label>
-    <div>
-      <button class="a" (click)="beforeDeleted(false)">לא </button>
-      <button class="b" (click)="beforeDeleted(true)">כן </button>
-    </div>
-  </div>
+    <button mat-menu-item
+            [disabled]="imagesInfos && !(imagesInfos.length>0)" 
+            (click)="deleteAllImg();">
+      <mat-icon>delete</mat-icon>
+      <span>מחק הכל</span>
+    </button>
 
   </mat-menu>
 
-  <div id="popup2" 
-  *ngIf="popup2Open"> 
+  <div class="connectedButtonsDiv" class="fixed left">    
+    <label>מה להציג?</label>
+    <button (click)="viewImgSelected()"
+            *ngIf="imagesInfos && imagesInfos.length>0"
+            class="smallButton">
+        {{selectedImgsText}}
+    </button>
+  </div>
+  <div class="connectedButtonsDiv" class="fixed leftt"><button (click)="endselect()"
+    class="smallButton"
+    *ngIf="!isAd" >
+סיים בחירה
+</button></div>
+<div class="connectedButtonsDiv" class="fixed leftt" ><button (click)="print()"
+class="smallButton"
+*ngIf="isAd" >
+הדפס
+</button></div>
+  <div class="connectedButtonsDiv" class="fixed lefttt">
+    <label [innerText]="'תמונות שנבחרו: '+ sumIsSelected+' '"></label>
+    <button (click)="saveImgSelected()"
+            class="smallButton"
+            *ngIf="!isAd">
+        שמור בחירה
+    </button>
+  </div>
+</div>
+
+  <div class="connectedButtonsDiv">
+    <label *ngIf="enableButton">
+      {{selectedFiles.length}} קבצים הועלו
+    </label>
+
+    <button *ngIf="enableButton"
+            class="smallButton"
+            (click)="uploadFile()">
+        אישור
+    </button>
+  </div>
+<mat-menu #premission="matMenu">
+ 
+<div id="popup1"> 
+  <label [innerText]="message"></label>
+  <div>
+    <button class="a" (click)="beforeDeleted(false)">לא </button>
+    <button class="b" (click)="beforeDeleted(true)">כן </button>
+  </div>
+</div>
+
+</mat-menu>
+
+<div id="popup2" 
+*ngIf="popup2Open"> 
 <label [innerText]="message"></label>
 <div>
-  <button class="b" (click)="beforeDeleted(true)">כן </button>
-  <button class="a" (click)="beforeDeleted(false)">לא </button>
+<button class="b" (click)="beforeDeleted(true)">כן </button>
+<button class="a" (click)="beforeDeleted(false)">לא </button>
 </div>
 </div>
 <div id="popup2" 
@@ -114,9 +112,14 @@
 <button class="a" (click)="endselectpop(false)">לא </button>
 </div>
 </div>
-  </div>
+</div>
+  
+
+
+  
+ 
 <div *ngIf="!isAd">
-    <div *ngFor="let img of imagesInfos" 
+    <div *ngFor="let img of paginatedImages" 
         class="images">
       <svg *ngIf="img['IsSelected']" 
             width="16" 
@@ -154,13 +157,15 @@
 
     </div>
   </div>
+  <div *ngIf="pageCount > 1">
+    <button *ngFor="let page of pages" (click)="changePage(page)">{{ page }}</button>
+  </div>
 </div>
   <table class="table table-striped" id="middle"*ngIf="isAd " >
     <thead>
     <tr>
       <th></th>
-      <th *ngIf="isAd && flag">שם תמונה שנבחרה</th>
-   
+      <th *ngIf="isAd && flag">שם תמונה שנבחרה</th> 
   </tr>
     </thead>
     <tbody>
@@ -172,7 +177,7 @@
     </tbody>
   </table>
 <div *ngIf="isAd && !flag">
-  <div *ngFor="let img of imagesInfos" 
+  <div *ngFor="let img of paginatedImages" 
   class="images">
   <div class="wrapprer-img" > 
 <img [src]="img['PathImg']"  >
@@ -182,6 +187,9 @@
 </span>
 
 </div>
+</div>
+<div *ngIf="pageCount > 1" >
+  <button *ngFor="let page of pages" (click)="changePage(page)">{{ page }}</button>
 </div>
 </div>
 </form>

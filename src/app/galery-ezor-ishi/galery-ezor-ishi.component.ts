@@ -46,6 +46,8 @@ export class GaleryEzorIshiComponent implements OnInit {
     sub: 'סיום בחירת תמונות ',
     txt: ''
   }
+  pageSize: number = 8;
+  currentPage: number = 1;
   constructor(
     
               private cliPg: ClientPageService,
@@ -79,7 +81,21 @@ export class GaleryEzorIshiComponent implements OnInit {
       console.log(this.imagesInfos)
     })
   }
- 
+
+  get paginatedImages() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.imagesInfos.slice(startIndex, endIndex);
+  }
+  get pageCount() {
+    return Math.ceil(this.imagesInfos.length / this.pageSize);
+  }
+  get pages() {
+    return Array.from({ length: this.pageCount }, (_, index) => index + 1);
+  }
+  changePage(page: number) {
+    this.currentPage = page;
+  }
   viewImgSelected() {
     if(this.selectedImgsText==='תמונות שנבחרו'){
       this.flag=true
@@ -132,6 +148,7 @@ export class GaleryEzorIshiComponent implements OnInit {
   }
   endselectpop(yesNo: boolean){
    if(yesNo){
+    
     sessionStorage.clear()
     this.detailss.mail ='shmuelphotographer1@gmail.com'       ;
     this.detailss.txt = `שלום שמואל,\n בחירת התמונות של הלקוח ${this.eventClient.FirstName } ${this.eventClient.LastName} בארוע ${this.eventName} הסתיימה!`

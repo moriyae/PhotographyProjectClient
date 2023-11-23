@@ -52,7 +52,33 @@ img {
     border: 0.5px solid white; */
 }
 
+.fixed{
+ position: fixed;
+top:10;
 
+}
+.right{
+  right: 150px;
+}
+.rightt{
+  right: 250px;
+}
+.left{
+  left: 100px;
+}
+.leftt{
+  left: 270px;
+}
+.lefttt{
+  left: 350px;
+}
+.center{
+right: 50%;
+}
+.relative{
+  position: relative;
+  height: 5vh;
+} 
 .icons{
     display: flex;
     flex-direction: row;
