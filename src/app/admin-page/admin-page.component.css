@@ -3,7 +3,40 @@ form{
   direction: rtl;
   background-color: rgb(255, 255, 255);
 }
-
+#stay{
+  position: sticky;
+  top:0%;
+  left: 0%;
+  opacity: 100;
+}
+.fixed{
+  height:calc(100vh - 60px);
+  position:fixed;
+  display:block;
+  }
+  .first{
+    top:100px;
+    right:8px;
+    
+    }
+    .second{
+      top:170px;
+      right:8px;
+    
+  
+    }
+    .three{
+      top:240px;
+      right:8px;
+    }
+    .four{
+      top:310px;
+      right:8px;
+    }
+    .five{
+      top:380px;
+      right:8px;
+    }
 .router-div{
   height: fit-content;
   padding-top: 10px;
@@ -12,6 +45,7 @@ form{
 }
 
 .buttons-div{
+  position: fixed;
   margin-right: 0px;
   margin-top: 0px;
   background-color: rgb(230, 230, 230);
@@ -93,7 +127,7 @@ h1{
   direction: rtl;
   cursor: pointer;
   border-width: 0px;
-  width: 100%;
+  width: 10%;
   height: 60px;
   text-align: right;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -112,7 +146,7 @@ h1{
   direction: rtl;
   cursor: pointer;
   border-width: 0px;
-  width: 100%;
+  width: 11%;
   font-weight: bold;
   height: 60px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

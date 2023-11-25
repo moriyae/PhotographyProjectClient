@@ -2,17 +2,15 @@
 {
   font-size: 13px !important;
   text-align: center !important;
-  /* background-color: rgb(243, 243, 243) !important; */
-  /* background-color: rgb(247, 247, 247) !important; */
+
   border-radius: 12px !important;
   float: none !important;
- /* border:none !important; */
- /* background-color: rgb(0, 36, 32) !important; */
+ 
  border-width: 2px !important;
   box-shadow: 0 4px 8px 0 rgb(231, 231, 231), 0 6px 15px 0 rgb(211, 211, 211) !important;
-  /* margin-left: 17% !important; */
+
   margin-top: 8px !important;
-  /* color: rgb(0, 36, 32) !important; */
+
   font-style: bold !important;
   background-color: white !important;
   opacity: 100% !important;
@@ -21,7 +19,8 @@ flex-direction: column !important;
 justify-content: center !important;
 align-items: center !important;
 cursor: pointer !important;
-border-color:  rgb(31, 0, 46);;
+border-color:  rgb(31, 0, 46);
+
 }
 
   
@@ -129,7 +128,8 @@ border-color:  rgb(31, 0, 46);;
 }
 
 .calendarDiv{
-  width: 85vw;
+  width: 70vw;
+right: 20%;
   display: flex;
   text-align: center;
   height: -moz-fit-content;

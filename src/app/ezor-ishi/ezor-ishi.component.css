@@ -14,11 +14,34 @@ form{
  
    
 }
+
 #stay{
   position: sticky;
   top:0%;
   left: 0%;
   opacity: 100;
+}
+.fixed{
+ height:calc(100vh - 60px);
+ position:fixed;
+
+ }
+ /* .relative{
+  position: relative;
+  height: 5vh;
+  width:20%;
+}  */
+.first{
+display:block;
+top:100px;
+right:8px;
+
+}
+.second{
+  top:200px;
+  right:8px;
+
+display:block;
 }
 /* #stayRight{
   position: fixed;
@@ -42,7 +65,7 @@ form{
 }
 
 .buttons-div{
- 
+  position: fixed;
   margin-right: 0px;
   margin-top: 0px;
  
@@ -132,7 +155,7 @@ h1{
   direction: rtl;
   cursor: pointer;
   border-width: 0px;
-  width: 100%;
+  width: 10%;
   height: 60px;
   text-align: right;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -152,7 +175,7 @@ h1{
   direction: rtl;
   cursor: pointer;
   border-width: 0px;
-  width: 100%;
+  width: 11%;
   font-weight: bold;
   height: 60px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

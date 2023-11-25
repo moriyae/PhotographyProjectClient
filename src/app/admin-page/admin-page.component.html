@@ -1,5 +1,5 @@
 <form>
-  <header>
+  <header id="stay">
       <h1 [innerText]="headerText" ></h1>
       <button class="exitButton" 
               mat-button 
@@ -18,35 +18,35 @@
  
       <button [ngClass]="tabs[0]? 'tabIn' : 'menuButton'"
               class="menuButton"
-              (click)="diary()">
+              (click)="diary()" class="fixed first">
         <mat-icon>event</mat-icon>
         יומן   
       </button>
 
       <button [ngClass]="tabs[1]? 'tabIn' : 'menuButton'"
               class="menuButton"
-              (click)="clientsManagment()">
+              (click)="clientsManagment()"  class="fixed second">
         <mat-icon>people</mat-icon>
         ניהול לקוחות
       </button>
 
       <button [ngClass]="tabs[2]? 'tabIn' : 'menuButton'"
               class="menuButton"
-              (click)="eventsManagment()">
+              (click)="eventsManagment()"  class="fixed three">
         <mat-icon>list</mat-icon>
         ניהול אירועים
       </button>
 
       <button [ngClass]="tabs[3]? 'tabIn' : 'menuButton'"
               class="menuButton"
-              (click)="categoriesManagment()">
+              (click)="categoriesManagment()" class="fixed four">
         <mat-icon>list</mat-icon>
        קטגוריות  
       </button>
 
       <button [ngClass]="tabs[4]? 'tabIn' : 'menuButton'"
               class="menuButton"
-              (click)="profile()">
+              (click)="profile()"  class="fixed five">
         <mat-icon>person</mat-icon>
         פרופיל
       </button>
