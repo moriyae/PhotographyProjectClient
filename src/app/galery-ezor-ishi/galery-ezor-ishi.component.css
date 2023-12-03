@@ -1,5 +1,6 @@
 img {
     /* width: 100%; */
+   
     max-width: 100%;
     max-height: 80%;
     width: auto;
@@ -7,41 +8,33 @@ img {
     margin-left: auto;
     margin-right: auto;
     display: block;
-
-    /* cursor: pointer; */
-    /* width: 12rem;
-    height: 12rem; */
 }
 
-/* icon download" */
 
 .select {
-   
-    /* width: 100%;
-    height: auto; */
     opacity: 0.6;
+    
 }
 .wrapprer-img{
     width: 220px;
-    height: 230px;
+    height: 230px; 
     cursor: pointer;
    
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-around; */
-}
-/* img {
-    cursor: pointer;
-    margin: 10px;
-    display: inline-flex;
-    justify-content: space-between; 
-} */
 
+}
+.wrapprer-imgg{
+  width: 220px;
+  height: 180px; 
+  cursor: pointer;
+}
 .images {
+
     display: inline-block;
     margin: 10px;
     border: 2px solid black;
-    /* justify-content: space-between; */
+}
+.midden{
+  margin-right: 18%;
 }
 .circle-fill {
     
@@ -110,13 +103,6 @@ mat-menu{
     /* position: absolute; */
 }
 #popup1{
-    /* width: 30vw; */
-    /* box-shadow: 4px 4px 10px 4px gray; */
-    /* padding: 1.5em; */
-    /* position: absolute; */
-    /* padding-bottom: 1.5em; */
-    /* position: sticky; */
-    /* top:0px; */
     margin: auto;
     text-align: center;
     display: flex;
@@ -127,6 +113,7 @@ mat-menu{
 }
 
 #popup2{
+
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -243,80 +230,7 @@ mat-menu{
   font-weight: bold;
 
   /* font-weight: bold; */
-}
-
-/*   
-  .buttonsDiv:hover{
-    /* background-color: white; */
-    /* background-color: rgb(230, 230, 230); */
-    /* border: 2px solid rgb(58, 0, 87); */
-    /* color: rgb(31, 0, 46);
-    font-weight: bold; */
-  /* }  */
-
-
-/* checkboxes of images from here */
-/* ul {
-    list-style-type: none;
-  }
-  
-  li {
-    display: inline-block;
-  }
-  
-  input[type="checkbox"][id^="myCheckbox"] {
-    display: none;
-  }
-  
-  label {
-    border: 1px solid #fff;
-    padding: 10px;
-    display: block;
-    position: relative;
-    margin: 10px;
-    cursor: pointer;
-  }
-  
-  label:before {
-    background-color: white;
-    color: white;
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    border: 1px solid grey;
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    line-height: 28px;
-    transition-duration: 0.4s;
-    transform: scale(0);
-  }
-  
-  label img {
-    height: 100px;
-    width: 100px;
-    transition-duration: 0.2s;
-    transform-origin: 50% 50%;
-  }
-  
-  :checked + label {
-    border-color: #ddd;
-  }
-  
-  :checked + label:before {
-    content: "✓";
-    background-color: grey;
-    transform: scale(1);
-  }
-  
-  :checked + label img {
-    transform: scale(0.9);
-    /* box-shadow: 0 0 5px #333; */
-    /* z-index: -1;
-  } */ 
+} 
 label{
   margin-bottom: 10px;
 }

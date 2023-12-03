@@ -17,66 +17,68 @@ import { Router } from '@angular/router';
 })
 
 export class GaleryEzorIshiComponent implements OnInit {
-  flag=false
-  end=true
-  searchText!:any;
-  dialogOpen=true
+  flag = false
+  
+  end = true
+  searchText!: any;
+  dialogOpen = true
   client!: Client;
   allImges!: Observable<any>;
-  imagesInfos:any[] = [];
-  sumIsSelected!: number  
+  imagesInfos: any[] = [];
+  sumIsSelected!: number
   eventId!: string
   progressInfos = [];
   selectedFiles!: FileList;
   isAd!: boolean
   message = '';
   message1 = [];
-  details={}
-  selectedImgsText='תמונות שנבחרו';
+  details = {}
+  selectedImgsText = 'תמונות שנבחרו';
   formData: FormData = new FormData();
   popupOpen: boolean = false;
   popup2Open: boolean = false;
-  popup3Open: boolean=false;
+  popup3Open: boolean = false;
   progress = 0;
-  enableButton=false;
-  eventClient:Client=new Client;
-  eventName='';
+  enableButton = false;
+  eventClient: Client = new Client;
+  eventName = '';
   detailss = {
-    mail:'',
+    mail: '',
     sub: 'סיום בחירת תמונות ',
     txt: ''
   }
   pageSize: number = 8;
   currentPage: number = 1;
   constructor(
-    
-              private cliPg: ClientPageService,
-              private snackBar:MatSnackBar,
-              private adminPg: AdminPageService,
-              public matDialog:MatDialog,
-              private location:Location,
-              private logIn: LoggedInGuardService) { }
+
+    private cliPg: ClientPageService,
+    private snackBar: MatSnackBar,
+    private adminPg: AdminPageService,
+    public matDialog: MatDialog,
+    private location: Location,
+    private logIn: LoggedInGuardService) { }
 
   ngOnInit() {
     this.imagesInfos = [];
     this.sumIsSelected = 0
-    this.eventId = sessionStorage.getItem('IDEvent')+"";
-    var cId=sessionStorage.getItem('eventClientId')+"";
-    this.eventName=sessionStorage.getItem('eventName')+'';
-    this.logIn.getAllClient(`Id=${cId}`).subscribe(c=>{
+    this.eventId = sessionStorage.getItem('IDEvent') + "";
+    var cId = sessionStorage.getItem('eventClientId') + "";
+    this.eventName = sessionStorage.getItem('eventName') + '';
+    this.logIn.getAllClient(`Id=${cId}`).subscribe(c => {
       console.log(c)
-      this.eventClient =c[0] as Client;
+      this.eventClient = c[0] as Client;
     });
 
     this.allImges = this.cliPg.getFiles(this.eventId);
     console.log(this.eventId)
 
-    this.allImges.subscribe(i => { 
+    this.allImges.subscribe(i => {
       console.log(i)
       this.imagesInfos = i
-      this.imagesInfos.forEach(img => { if (img['IsSelected']) this.sumIsSelected++;
-      console.log(img.Name);
-       })
+      this.imagesInfos.forEach(img => {
+        if (img['IsSelected']) this.sumIsSelected++;
+        console.log(img.Name);
+      })
       this.isAd = this.logIn.isAdminUser()
       console.log(this.imagesInfos)
     })
@@ -97,40 +99,40 @@ export class GaleryEzorIshiComponent implements OnInit {
     this.currentPage = page;
   }
   viewImgSelected() {
-    if(this.selectedImgsText==='תמונות שנבחרו'){
-      this.flag=true
+    if (this.selectedImgsText === 'תמונות שנבחרו') {
+      this.flag = true
       this.imagesInfos = this.imagesInfos.filter((img) => img['IsSelected'] == true)
       console.log(this.imagesInfos)
-      this.selectedImgsText='כל התמונות'
+      this.selectedImgsText = 'כל התמונות'
     }
 
-    else{
+    else {
       this.allImges.subscribe(i => {
-        this.flag=false
-        this.sumIsSelected=0
+        this.flag = false
+        this.sumIsSelected = 0
         this.imagesInfos = i
         this.imagesInfos.forEach(img => { if (img['IsSelected']) this.sumIsSelected++ })
         this.isAd = this.logIn.isAdminUser()
         console.log(this.imagesInfos)
       })
-      this.selectedImgsText='תמונות שנבחרו' 
+      this.selectedImgsText = 'תמונות שנבחרו'
     }
-  }   
-  print(){
-      window.print();  
   }
-  viewSelect(img:any) {
-    if(this.end==false)
+  print() {
+    window.print();
+  }
+  viewSelect(img: any) {
+    if (this.end == false)
       return;
-    if(this.isAd==true)
+    if (this.isAd == true)
       return;
     img.IsSelected = !img.IsSelected
-    if(this.sumIsSelected==1){
-      this.end=false
+    if (this.sumIsSelected == 9) {
+      this.end = false
       this.matDialog.closeAll();
-      this.snackBar.open('!הגעת למכסה של מקסימום תמונות שאפשר לבחור','X')
-      if(this.end==false)
-      return;
+      this.snackBar.open('!הגעת למכסה של מקסימום תמונות שאפשר לבחור', 'X')
+      if (this.end == false)
+        return;
     }
     if (img.IsSelected)
       this.sumIsSelected++
@@ -141,24 +143,27 @@ export class GaleryEzorIshiComponent implements OnInit {
   saveImgSelected() {
     this.cliPg.updateImgSelected(this.imagesInfos)
   }
-   async endselect(){
-   
-    this.message=`האם אתה בטוח שסיימת לבחור את כל התמונות? \n פעולה זו תשלח לצלם את התמונות ולא יהיה ניתן לשנות!`
-    this.popup3Open=true
+  async endselect() {
+    var userDecision = confirm(`האם אתה בטוח שסיימת לבחור את כל התמונות? \n פעולה זו תשלח לצלם את התמונות ולא יהיה ניתן לשנות!`);
+   if (userDecision) {
+      sessionStorage.clear()
+      this.detailss.mail = 'shmuelphotographer1@gmail.com';
+      this.detailss.txt = `שלום שמואל,\n בחירת התמונות של הלקוח ${this.eventClient.FirstName} ${this.eventClient.LastName} בארוע ${this.eventName} הסתיימה!`
+      this.logIn.send(this.detailss).subscribe(r => { })
+    }
+    // this.popup3Open = false
+    // this.end = false
   }
-  endselectpop(yesNo: boolean){
-   if(yesNo){
-    
-    sessionStorage.clear()
-    this.detailss.mail ='shmuelphotographer1@gmail.com'       ;
-    this.detailss.txt = `שלום שמואל,\n בחירת התמונות של הלקוח ${this.eventClient.FirstName } ${this.eventClient.LastName} בארוע ${this.eventName} הסתיימה!`
-    this.logIn.send(this.detailss).subscribe(r=> {})
-   }
-   this.popup3Open=false
-   this.end=false
-  }
+    // this.message = `האם אתה בטוח שסיימת לבחור את כל התמונות? \n פעולה זו תשלח לצלם את התמונות ולא יהיה ניתן לשנות!`
+    // this.popup3Open = true
+
+
   
-  onSelectedFile(event:any) {
+  // endselectpop(yesNo: boolean) {
+ 
+  // }
+
+  onSelectedFile(event: any) {
     this.selectedFiles = event.target.files;
   }
 
@@ -169,35 +174,35 @@ export class GaleryEzorIshiComponent implements OnInit {
       this.formData.append('userfiles', this.selectedFiles[i])
   }
 
- async downLoad(img:any) {
-  console.log(img)
-    let nameImg=[img]
-    let res= await this.cliPg.downLoadImg(nameImg)
-  
-     if(res){
-      saveAs(res,img.Name)
-     }
-  }
+  async downLoad(img: any) {
+    console.log(img)
+    let nameImg = [img]
+    let res = await this.cliPg.downLoadImg(nameImg)
 
-  async downLoadAllImg(){
-    let names: any[]=[]
-    this.imagesInfos.forEach(img =>{names.push(img.Name)});
-    let res= await this.cliPg.downLoadImg(names)
-    if(res){
-    var file = new Blob([res], { type: 'application/zip' });
-
-    saveAs(file,`img.zip`)
+    if (res) {
+      saveAs(res, img.Name)
     }
   }
 
-  deleteImg(id:any, name:any) {
+  async downLoadAllImg() {
+    let names: any[] = []
+    this.imagesInfos.forEach(img => { names.push(img.Name) });
+    let res = await this.cliPg.downLoadImg(names)
+    if (res) {
+      var file = new Blob([res], { type: 'application/zip' });
+
+      saveAs(file, `img.zip`)
+    }
+  }
+
+  deleteImg(id: any, name: any) {
     this.details = {
       id: id,
       field: 'Id',
       name: name,
       idEvent: this.eventId
     }
-    this.message=`האם אתה בטוח שאתה רוצה למחוק את ${name.Name}?` 
+    this.message = `האם אתה בטוח שאתה רוצה למחוק את ${name.Name}?`
   }
 
   deleteAllImg() {
@@ -206,74 +211,75 @@ export class GaleryEzorIshiComponent implements OnInit {
       id: this.eventId,
       field: 'EventId',
     }
-    this.message='האם אתה רוצה למחוק את כל התמונות?'
-    this.popup2Open=true
+    this.message = 'האם אתה רוצה למחוק את כל התמונות?'
+    this.popup2Open = true
   }
 
-  setPopupOpen(){
-  this.popupOpen = true;
-  this.progressInfos = []; 
-  this.message1 = []
+  setPopupOpen() {
+    this.popupOpen = true;
+    this.progressInfos = [];
+    this.message1 = []
   }
 
-  closePopup(){
-    this.popupOpen=false;
+  closePopup() {
+    this.popupOpen = false;
   }
 
-  selectFiles(event:any): void {
+  selectFiles(event: any): void {
     this.message1 = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    if(this.selectedFiles.length>0){
-      this.enableButton=true;
+    if (this.selectedFiles.length > 0) {
+      this.enableButton = true;
     }
     console.log(this.selectedFiles);
   }
-  
+
   uploadFile(): void {
     if (this.selectedFiles) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.upload(i,this.selectedFiles[i]);
+        this.upload(i, this.selectedFiles[i]);
       }
     }
 
     setTimeout(() => {
       this.ngOnInit();
-      this.enableButton=false;
+      this.enableButton = false;
     }, 1000);
   }
 
   upload(idx: number, file: File): void {
-    
+
     if (file) {
       this.adminPg.uploads(file).subscribe(
-        a=>console.log(a)    
-        )
+        a => console.log(a)
+      )
     }
   }
 
-  
-  beforeDeleted(yesNo: boolean){
-    if(yesNo){
-      this.adminPg.deleteImg(this.details).subscribe(ans => {console.log(ans), this.ngOnInit()})
-    }
-    this.popup2Open=false
-  }
- 
-   async imgSelected(img:any){
-      if(img.isPublished==true)
-         await this.cliPg.deleteImgFromPublic(img);
-      else
-        await this.cliPg.imgSelected(img);
-     var value= img.isPublished==true?false:true;
-        this.imagesInfos.forEach(element=>{
-          if(element.Id==img.Id){
-            element.isPublished=value;
-          }})
-    } 
 
-    back(){
-      this.location.back();
-      this.adminPg.setCurrentEventNull();
+  beforeDeleted(yesNo: boolean) {
+    if (yesNo) {
+      this.adminPg.deleteImg(this.details).subscribe(ans => { console.log(ans), this.ngOnInit() })
     }
+    this.popup2Open = false
+  }
+
+  async imgSelected(img: any) {
+    if (img.isPublished == true)
+      await this.cliPg.deleteImgFromPublic(img);
+    else
+      await this.cliPg.imgSelected(img);
+    var value = img.isPublished == true ? false : true;
+    this.imagesInfos.forEach(element => {
+      if (element.Id == img.Id) {
+        element.isPublished = value;
+      }
+    })
+  }
+
+  back() {
+    this.location.back();
+    this.adminPg.setCurrentEventNull();
+  }
 }
