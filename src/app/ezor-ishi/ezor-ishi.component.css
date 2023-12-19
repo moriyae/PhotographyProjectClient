@@ -19,6 +19,8 @@ form{
   position: sticky;
   top:0%;
   left: 0%;
+  opacity: 1;
+ z-index: 999;
 }
 .fixed{
  height:calc(100vh - 60px);

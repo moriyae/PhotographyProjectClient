@@ -48,7 +48,8 @@ img {
 .fixed{
  position: fixed;
 top:10;
-
+opacity: 1;
+    z-index: 999;
 }
 .right{
   right: 150px;
@@ -147,6 +148,8 @@ mat-menu{
   }
 
   .buttonsDiv{
+    opacity: 1;
+    z-index: 999;
     color: rgb(42, 0, 63);
     font-size: large;
     /* display: flex; */
@@ -186,6 +189,7 @@ mat-menu{
   }
 
   .connectedButtonsDiv{
+   
     position: sticky;
     display: flex;
     flex-direction: column;
